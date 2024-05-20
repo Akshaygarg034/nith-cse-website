@@ -78,7 +78,7 @@ function student() {
                 <div className={styles.wideImage} style={{ height: '100vh' }}>
                     <Login_></Login_>
                     <Image
-                        src="https://drive.google.com/uc?export=view&id=1PCwAWu5E-hnIS67i9QmSOhy5zpj5uDfn"
+                        src="https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225367/nith-cse-website/vlusyosxr9ddv7mk8blb.jpg"
                         className="fullPagePics"
                         alt=""
                         sizes="100vw"

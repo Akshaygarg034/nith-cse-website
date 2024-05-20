@@ -23,25 +23,25 @@ export default function Home() {
         <link rel="icon" href="/logo.png" />
       </Head>
       <CustomCursor
-                targets={['#home', '#about', '#faculty', '#student', '#moreDetails']}
-                customClass='custom-cursor'
-                dimensions={100}
-                fill='#FFF'
-                smoothness={{
-                    movement: 0.3,
-                    scale: 0.1,
-                    opacity: 0.2,
-                }}
-                opacity={0.7}
-                targetOpacity={0.5}
-                targetScale={3}
-                strokeColor={'#000'}
-                strokeWidth={0}
+        targets={['#home', '#about', '#faculty', '#student', '#moreDetails']}
+        customClass='custom-cursor'
+        dimensions={100}
+        fill='#FFF'
+        smoothness={{
+          movement: 0.3,
+          scale: 0.1,
+          opacity: 0.2,
+        }}
+        opacity={0.7}
+        targetOpacity={0.5}
+        targetScale={3}
+        strokeColor={'#000'}
+        strokeWidth={0}
       />
       <ScrollToTop smooth='true' width={30} height={30} style={scrollStyle} />
       <Header />
-      <MainGrid/>
-      <Announcements/>
+      <MainGrid />
+      <Announcements />
       <Footer />
     </>
   )

@@ -59,7 +59,7 @@ function About() {
                 <Login_></Login_>
                 <div className={styles.studentHeader}>
                     <Image
-                        src="https://drive.google.com/uc?export=view&id=1fFepcxojMsftKyMou-4v49tmHTufQl5s"
+                        src="https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225604/nith-cse-website/wnakm4202ka5fguovvzn.jpg"
                         className="fullPagePics"
                         alt=""
                         sizes="100vw"

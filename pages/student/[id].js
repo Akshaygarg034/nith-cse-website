@@ -103,7 +103,7 @@ function IdPage() {
                     <Login_></Login_>
                     <div className={styles.studentHeader}>
                         <div> <Image
-                            src="https://drive.google.com/uc?export=view&id=1yJWRJd8_o7W1rvhJ2wu1vPGAnhKGZt40"
+                            src="https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225363/nith-cse-website/ckozsgzag0uk4b20nuji.jpg"
                             className="fullPagePics"
                             alt=""
                             sizes="100vw"

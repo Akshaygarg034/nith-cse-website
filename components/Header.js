@@ -10,11 +10,11 @@ function Header() {
   const Login_ = () => {
     if (status === 'authenticated') {
       return <Chip
-              avatar={<Avatar alt="Natacha" src={session.user.image} />}
-              label={session.user.name}
-              variant="outlined"
-              id='avatar'
-             />
+        avatar={<Avatar alt="Natacha" src={session.user.image} />}
+        label={session.user.name}
+        variant="outlined"
+        id='avatar'
+      />
     }
   }
 
@@ -23,7 +23,7 @@ function Header() {
       <div className={styles.header}>
         <div className={styles.overlay}></div>
 
-        <video src="http://drive.google.com/uc?export=view&id=1uFXj1cLlsE_v9wWkexK-d5z_Q8AdP5to" autoPlay loop muted className={styles.bgVideo} />
+        <video src="https://res.cloudinary.com/dz1vsgxm5/video/upload/v1716225403/nith-cse-website/kkgeccdwvo1rvxvbiwmt.mp4" autoPlay loop muted className={styles.bgVideo} />
         <Navbar />
         <div className={styles.content}>
 

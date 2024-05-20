@@ -66,7 +66,7 @@ function faculty() {
                 <div className={styles.wideImage}>
                     <Login_></Login_>
                     <Image
-                        src="https://drive.google.com/uc?export=view&id=1zneno4RiqMsklNNULWvextpgOKJEfqot"
+                        src="https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225360/nith-cse-website/pqqnuky398dmncxvkp9d.jpg"
                         className="halfPagePics"
                         alt=""
                         sizes="100vw"

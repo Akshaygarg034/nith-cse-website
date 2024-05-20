@@ -53,7 +53,7 @@ function MainGrid() {
                         </div>
                         <div className={styles.box5}>
                             <div className={styles.overlay} style={{ bottom: '1.8%' }}></div>
-                            <video src="http://drive.google.com/uc?export=view&id=1SIDWRje4qGP4kCorGQAcjT6NKmNV1tKA" autoPlay loop muted className={styles.boxVideo} />
+                            <video src="https://res.cloudinary.com/dz1vsgxm5/video/upload/v1716225401/nith-cse-website/czpfjitkjmsqiotte3bh.mp4" autoPlay loop muted className={styles.boxVideo} />
                             <Fade bottom>
                                 <h1>Video Heading</h1>
                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam nam cumque nulla optio ducimus dignissimos</p>
