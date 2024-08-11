@@ -1,0 +1,245 @@
+.gridSection {
+    position: absolute;
+    top: 100vh;
+}
+
+.container {
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    margin-left: -0.6%;
+}
+
+.box1 {
+    background: url("https://www.iima.ac.in/sites/default/files/2022-10/Diverse-Community.jpg");
+    background-size: cover;
+    color: white;
+    width: 50vw;
+    font-size: 1.6em;
+    text-align: center;
+}
+
+.box1>h1 {
+    position: relative;
+    top: -41%;
+    font-family: 'Averia Serif Libre', cursive;
+}
+
+.box1>h1:hover {
+    text-decoration: underline;
+}
+
+.box1>p {
+    position: absolute;
+    width: 30%;
+    bottom: 9%;
+    left: 10%;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9em;
+}
+
+.overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(transparent, transparent, black);
+}
+
+.inner1>.inner1Data>h1 {
+    font-family: 'Averia Serif Libre', cursive;
+}
+
+.inner1>.inner1Data>h1:hover {
+    text-decoration: underline;
+}
+
+.inner1>.inner1Data>p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.9em;
+}
+
+
+.inner1 {
+    font-size: 25px;
+    color: white;
+    background-color: rgb(191, 42, 42);
+    height: 700px;
+}
+
+.inner1Data {
+    width: 58%;
+    text-align: right;
+    position: relative;
+    right: -25%;
+    top: 14%;
+}
+
+.box2>p {
+    position: absolute;
+    top: 1%;
+    right: 17%;
+    width: 20%;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.box2 {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+.inner2 {
+    height: 700px;
+    background-color: #f8f8f8;
+    text-align: left;
+}
+
+.inner2>h1 {
+    color: #1B2F6E;
+    font-size: 3.3em;
+    font-family: 'Averia Serif Libre', cursive;
+    margin-left: 13%;
+}
+
+.inner2>p {
+    position: absolute;
+    font-size: 1.5em;
+    top: 67%;
+    left: 57%;
+    width: 38%;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.container2 {
+    min-width: 100vw;
+    height: 100vh;
+    display: flex;
+    position: relative;
+    top: 100vh;
+    margin-left: -0.6%;
+}
+
+.box3 {
+    width: 33.3%;
+    height: 1200px;
+}
+
+.inner3 {
+    height: 50vh;
+    color: white;
+    background-color: #1B2F6E;
+}
+
+.inner3>h1 {
+    position: absolute;
+    font-size: 2.1em;
+    font-family: 'Averia Serif Libre', cursive;
+    left: 12%;
+    top: 12%;
+}
+
+.inner3>h1:hover {
+    text-decoration: underline;
+}
+
+.inner3>p {
+    position: absolute;
+    font-size: 1.1em;
+    font-family: 'Noto Sans', sans-serif;
+    width: 23%;
+    text-align: right;
+    left: 5%;
+    top: 23%;
+}
+
+.inner4 {
+    height: 50vh;
+    background: url("https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225342/nith-cse-website/a79gm543xxhdn0enrlck.png");
+    background-size: cover;
+}
+
+.box4 {
+    position: absolute;
+    left: 30.3%;
+    width: 33.3%;
+}
+
+.inner5 {
+    height: 50vh;
+    background: url("https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225344/nith-cse-website/ndqxsdpf4bijsi6qpgpi.jpg");
+    background-size: cover;
+}
+
+.inner6 {
+    height: 50vh;
+    color: white;
+    background-color: rgb(191, 42, 42);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner6 h1 {
+    position: relative;
+    font-size: 2.1em;
+    font-family: 'Averia Serif Libre', cursive;
+    top: 0;
+    left: -8%;
+}
+
+.inner6 h1:hover {
+    text-decoration: underline;
+}
+
+.inner6 p {
+    position: relative;
+    font-size: 1.1em;
+    font-family: 'Noto Sans', sans-serif;
+    top: -5%;
+    width: 68%;
+    left: -8%;
+}
+
+.boxVideo {
+    width: 114%;
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.box5 {
+    width: 35%;
+    height: 100vh;
+    position: absolute;
+    right: 2%;
+    color: white;
+    font-size: 1.5em;
+}
+
+.box5>h1 {
+    position: relative;
+    top: -37%;
+    left: 26%;
+    font-family: 'Averia Serif Libre', cursive;
+}
+
+.box5>h1:hover {
+    text-decoration: underline;
+}
+
+.box5>p {
+    position: absolute;
+    width: 59%;
+    bottom: 7%;
+    left: 26%;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.8em;
+}
