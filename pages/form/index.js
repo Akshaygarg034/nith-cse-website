@@ -255,7 +255,7 @@ function AuthForm() {
         </div>
       )
     if (status === 'unauthenticated') {
-      signIn('google', { callbackUrl: "http://localhost:3000/form" })
+      signIn('google', { callbackUrl: `${process.env.GOOGLE_ID}/form` })
     }
 
 
