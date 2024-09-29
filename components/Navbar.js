@@ -1,30 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from 'next/link';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
 import styles from '../styles/header.module.css'
-import { signIn,signOut,useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useRouter();
-  const {data:session,status}=useSession();
-  const Login_=()=>{
-    if(status==='unauthenticated'){
-     return  <Link onClick={()=>signIn('google')} href="/" id="student">Sign In</Link>
-    }
-    if(session){
-      return  (
+  const { data: session, status } = useSession();
 
-      <Link onClick={()=>signOut()} href="/" id="student">Sign Out</Link>
-)
-    
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add(styles.noScroll);
+    } else {
+      document.body.classList.remove(styles.noScroll);
+    }
+
+    // Cleanup function to remove the class when the component unmounts
+    return () => {
+      document.body.classList.remove(styles.noScroll);
+    };
+  }, [isOpen]);
+
+  const Login_ = () => {
+    if (status === 'unauthenticated') {
+      return <Link onClick={() => signIn('google')} href="/" id="student">Sign In</Link>
+    }
+    if (session) {
+      return (
+
+        <Link onClick={() => signOut()} href="/" id="student">Sign Out</Link>
+      )
+
     }
   }
   return (
-    
+
     <div className={styles.Navbar}>
-      <img src="https://thumbsnap.com/i/CZmvhUcX.png" alt="logo" className={styles.logo}/>
+      <img src="https://thumbsnap.com/i/CZmvhUcX.png" alt="logo" className={styles.logo} />
       <div className={`${styles.navItems} ${isOpen && styles.open}`}>
         <Login_></Login_>
         <Link className={`${styles.navLinks} ${location.pathname === '/' ? styles.active : ''}`} href="/" id="home">Home</Link>

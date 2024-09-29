@@ -3,8 +3,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 /* paragraphs */
 
+
+::-webkit-scrollbar {
+  width: 0.4rem;
+  background-color: #1c2935;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.25rem;
+  background-color: #647578;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #779ea5;
+}
+
 body {
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden;
   cursor: none;
 }
@@ -36,17 +51,15 @@ body {
 
 .announcement_section {
   position: relative;
-  top: 299vh;
   background: #f8f8f8;
   height: 66vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: -0.6%;
 }
 
 .heading {
-  width: 100vw;
+  width: 100%;
   display: flex;
   margin-top: -4%;
   align-items: center;
@@ -519,6 +532,27 @@ input {
   }
 }
 
+@media screen and (max-width: 1240px) {
+  .heading{
+    justify-content: flex-start;
+    padding: 0 5%;
+  }
+  .heading>div {
+    opacity: 0;
+    width: 0%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .announcementBox{
+    flex-direction: column;
+    gap: 1em;
+    padding: 0 2%;
+  }
+  .announcement{
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .screen-body {
     padding: 40px;
@@ -526,5 +560,9 @@ input {
 
   .screen-body-item {
     padding: 0;
+  }
+
+  .heading>h1{
+    font-size: 2.5em;
   }
 }

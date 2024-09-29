@@ -1,13 +1,11 @@
 .gridSection {
-    position: absolute;
-    top: 100vh;
+    position: relative;
 }
 
 .container {
     height: 100vh;
-    position: absolute;
+    position: relative;
     display: flex;
-    margin-left: -0.6%;
 }
 
 .box1 {
@@ -17,12 +15,21 @@
     width: 50vw;
     font-size: 1.6em;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: flex-end;
+    padding: 5% 5%;
+    text-align: left;
 }
 
 .box1>h1 {
     position: relative;
-    top: -41%;
     font-family: 'Averia Serif Libre', cursive;
+}
+
+.box1 > .overlay{
+    position: absolute;
 }
 
 .box1>h1:hover {
@@ -30,10 +37,7 @@
 }
 
 .box1>p {
-    position: absolute;
-    width: 30%;
-    bottom: 9%;
-    left: 10%;
+    position: relative;
     font-family: 'Noto Sans', sans-serif;
     font-size: 0.9em;
 }
@@ -119,27 +123,28 @@
     height: 100vh;
     display: flex;
     position: relative;
-    top: 100vh;
-    margin-left: -0.6%;
 }
 
 .box3 {
     width: 33.3%;
-    height: 1200px;
+    display: flex;
+    flex-direction: column;
 }
 
 .inner3 {
-    height: 50vh;
+    height: 50%;
     color: white;
     background-color: #1B2F6E;
+    padding: 0 10%;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .inner3>h1 {
-    position: absolute;
     font-size: 2.1em;
     font-family: 'Averia Serif Libre', cursive;
-    left: 12%;
-    top: 12%;
 }
 
 .inner3>h1:hover {
@@ -147,30 +152,25 @@
 }
 
 .inner3>p {
-    position: absolute;
+    position: relative;
     font-size: 1.1em;
     font-family: 'Noto Sans', sans-serif;
-    width: 23%;
-    text-align: right;
-    left: 5%;
-    top: 23%;
+    width: 100%;
 }
 
 .inner4 {
-    height: 50vh;
-    background: url("https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225342/nith-cse-website/a79gm543xxhdn0enrlck.png");
+    height: 50%;
+    background: url("https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225344/nith-cse-website/ndqxsdpf4bijsi6qpgpi.jpg");
     background-size: cover;
 }
 
 .box4 {
-    position: absolute;
-    left: 30.3%;
     width: 33.3%;
 }
 
 .inner5 {
     height: 50vh;
-    background: url("https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225344/nith-cse-website/ndqxsdpf4bijsi6qpgpi.jpg");
+    background: url("https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225342/nith-cse-website/a79gm543xxhdn0enrlck.png");
     background-size: cover;
 }
 
@@ -181,16 +181,15 @@
     text-align: left;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding: 0 10%;
 }
 
 .inner6 h1 {
     position: relative;
     font-size: 2.1em;
     font-family: 'Averia Serif Libre', cursive;
-    top: 0;
-    left: -8%;
 }
 
 .inner6 h1:hover {
@@ -201,9 +200,7 @@
     position: relative;
     font-size: 1.1em;
     font-family: 'Noto Sans', sans-serif;
-    top: -5%;
-    width: 68%;
-    left: -8%;
+    width: 100%;
 }
 
 .boxVideo {
@@ -216,18 +213,23 @@
 }
 
 .box5 {
-    width: 35%;
+    width: 33.4%;
     height: 100vh;
-    position: absolute;
-    right: 2%;
     color: white;
     font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.box5>.overlay{
+    position: absolute;
 }
 
 .box5>h1 {
     position: relative;
-    top: -37%;
-    left: 26%;
     font-family: 'Averia Serif Libre', cursive;
 }
 
@@ -236,10 +238,167 @@
 }
 
 .box5>p {
-    position: absolute;
+    position: relative;
     width: 59%;
-    bottom: 7%;
-    left: 26%;
     font-family: 'Noto Sans', sans-serif;
     font-size: 0.8em;
+}
+
+
+@media screen and (max-width:800px){
+    .container{
+        flex-direction: column;
+    }
+    .box1{
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        >.overlay{
+            position:absolute;
+        }
+    }
+
+    .box1>h1{
+        top: 0;
+    }
+
+    .box1>p{
+        width: 80%;
+        left: 0;
+        bottom: 0;
+        position: relative;
+        font-size: 0.8em;
+    }
+
+    .box2{
+        flex-direction: row;
+        width: 100%;
+        height: 50%;
+    }
+    .inner1{
+        width: 50%;
+    }
+    .inner1Data{
+        width: 100%;
+        text-align: center;
+        right: 0;
+        top: 3%;
+    }
+    .inner1Data>p{
+        font-size: 0.8em !important;
+    }
+    .inner2{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 50%;
+        text-align: center;
+    }
+    .inner2>p{
+        font-size: 1.2em;
+        top: 0;
+        left: 0;
+        position:relative;
+        width: 80%;
+    }
+    .inner2>h1{
+        font-size: 2.5em;
+        margin-left: 0%;
+    }
+    .container2{
+        flex-direction: column;
+        height: 100%;
+    }
+    .box3{
+        width: 100%;
+        flex-direction: row;
+        height: 50vh;
+    }
+    .inner3{
+        width: 50%;
+        height: 100%;
+    }
+    .inner4{
+        width: 50%;
+        height: 100%;
+    }
+    .box4{
+        display: flex;
+        width: 100%;
+        height: 50vh;
+    }
+    .inner5{
+        width: 50%;
+        height: 100%;
+    }
+    .inner6{
+        width: 50%;
+        height: 100%;
+    }
+    .box5{
+        width: 100%;
+        height: 50vh;
+        padding: 0 10%;
+        text-align: center;
+    }
+    .box5>p{
+        width: 100%;
+    }
+    .boxVideo{
+        height: 100%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .box2{
+        flex-direction: column;
+    }
+    .inner1{
+        width: 100%;
+    }
+    .inner2{
+        width: 100%;
+        padding: 0 4%;
+    }
+    .box1>p{
+        font-size: 0.7em;
+    }
+    .inner1Data{
+        padding: 0 4%;
+    }
+    .inner1Data>p{
+        font-size: 0.7em !important;
+    }
+    .inner2>p{
+        width: 100%;
+        font-size: 1.1em;
+        top: -10%;
+    }
+    .box3{
+        flex-direction: column;
+        height: 75vh;
+    }
+    .inner3{
+        width: 100%;
+        text-align: left;
+    }
+    .inner4{
+        width: 100%;
+    }
+    .box4{
+        flex-direction: column-reverse;
+        height: 75vh;
+    }
+    .inner5{
+        width: 100%;
+    }
+    .inner6{
+        width: 100%;
+    }
 }

@@ -3,7 +3,7 @@ import Fade from 'react-reveal/Fade';
 
 function Announcements() {
     return (
-        <>
+        <div>
             <section className='announcement_section'>
                 <div className="heading">
                     <h1>Announcements</h1>
@@ -27,7 +27,7 @@ function Announcements() {
                 </Fade>
             </section>
 
-        </>
+        </div>
     )
 }
 
