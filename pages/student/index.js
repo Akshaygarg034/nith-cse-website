@@ -48,7 +48,6 @@ function student() {
             });
     }, []);
 
-
     return (
         <>
             <Head>

@@ -12,9 +12,9 @@ export default function SearchBar(props) {
 
         if (allStudentData.length > 0) {
             const newData = allStudentData.filter((data) => {
-                return (
-                    data.name.toLowerCase().includes(newSearchTerm.toLowerCase()) ||
-                    data.rollno.toLowerCase().includes(newSearchTerm.toLowerCase())
+                return (data.name &&
+                    (data.name.toLowerCase().includes(newSearchTerm.toLowerCase()) ||
+                    data.rollno.toLowerCase().includes(newSearchTerm.toLowerCase()))
                 );
             });
             setstudentData(newData);
