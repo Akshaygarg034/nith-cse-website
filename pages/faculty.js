@@ -69,13 +69,14 @@ function faculty() {
                         src="https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225360/nith-cse-website/pqqnuky398dmncxvkp9d.jpg"
                         className="halfPagePics"
                         alt=""
-                        sizes="100vw"
+                        sizes="62vw"
                         height="0"
                         width="0"
                     />
                     <h1>Faculty</h1>
                     <p>The curiosity and tenacity that drives our faculty’s research and creativity make their classrooms exciting places to be.</p>
                 </div>
+                <div className={styles.dummyFacultyHeader} style={{height: '62vh'}}></div>
                 <section className={styles.messageSection}>
                     <div className={styles.heading}>
                         <h1>Message from the Dean</h1>
@@ -94,6 +95,7 @@ function faculty() {
                         </div>
                     </div>
                 </section>
+
                 <section className={styles.facultySection}>
                     <div className={styles.heading}>
                         <h1>Our Renowned Faculty</h1>

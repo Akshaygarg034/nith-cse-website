@@ -13,6 +13,7 @@ import SearchBar from '@/components/SearchBar';
 import { useSession } from 'next-auth/react'
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
+import Fade from 'react-reveal/Fade';
 
 function student() {
     const { data: session, status } = useSession()
@@ -90,12 +91,16 @@ function student() {
                     <p>The curiosity and tenacity that drives our faculty’s research and creativity make their classrooms exciting places to be.</p>
                 </div>
 
+                <div className={styles.dummyHeader}></div>
+
                 <StudentGrid />
 
-                <section className={styles.facultySection} style={{ top: '203vh' }}>
-                    <div className={styles.heading}>
-                        <h1>Our Students</h1>
-                    </div>
+                <section className={styles.facultySection}>
+                    <Fade left>
+                        <div className={styles.heading}>
+                            <h1>Our Students</h1>
+                        </div>
+                    </Fade>
 
                     <SearchBar allStudentData={allStudentData} studentData={studentDataState} setstudentData={setstudentDatastate} />
 

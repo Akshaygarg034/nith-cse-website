@@ -1,10 +1,8 @@
 import { withFormik, Form, Field } from 'formik';
-import CustomCursor from 'custom-cursor-react';
-import { useCallback, useEffect } from 'react';
-import { useSession, signIn, signOut } from "next-auth/react"
-import { Link } from 'next/link'
+import { useSession, signIn } from "next-auth/react"
 import 'custom-cursor-react/dist/index.css';
 import { Router, useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const ERROR_MSG = 'Oops! Something went wrong 🤷‍♂️';
 const fetchData = async ({ url, options }) => {
@@ -19,27 +17,20 @@ const fetchData = async ({ url, options }) => {
 };
 
 const InnerForm = (props) => {
-  const { touched, errors, isSubmitting, getFieldProps } = props;
+  const { getFieldProps } = props;
   const router = useRouter()
+  useEffect(() => {
+    // Apply styles to the body
+    document.body.style.backgroundColor = '#000';
+
+    // Clean up styles when the component unmounts
+    return () => {
+      document.body.style.backgroundColor = '';
+    };
+  }, []);
+
   return (
     <>
-      <CustomCursor
-        targets={['#home', '#about', '#faculty', '#student', '#moreDetails']}
-        customClass='custom-cursor'
-        dimensions={100}
-        fill='skyblue'
-        smoothness={{
-          movement: 0.3,
-          scale: 0.1,
-          opacity: 0.2,
-        }}
-        opacity={0.5}
-        targetOpacity={0.5}
-        targetScale={3}
-        strokeColor={'#000'}
-        strokeWidth={0}
-      />
-
       <div className="flex text-white justify-around mainForm">
 
         <div className="background">
@@ -58,7 +49,7 @@ const InnerForm = (props) => {
                   <div className="screen-body-item left">
                     <div className="app-title">
                       <span>Registration</span>
-                      <span>FORM</span>
+                      <span>Form</span>
                     </div>
                     <div className="upload_title">
 
@@ -91,13 +82,15 @@ const InnerForm = (props) => {
 
                           type="text"
                           {...getFieldProps('name')}
+                          readOnly
                         />
                       </div>
                       <div className="app-form-group">
                         <input className="app-form-control" placeholder="Roll_no"
                           type="text"
                           name="roll_no" id="roll_no"
-                          {...getFieldProps('roll_no')}
+                          {...getFieldProps('rollno')}
+                          readOnly
                         />
                       </div>
                       <div className="app-form-group">
@@ -107,6 +100,7 @@ const InnerForm = (props) => {
                           className="app-form-control"
                           placeholder="Email"
                           {...getFieldProps('email')}
+                          readOnly
                         />
                       </div>
                       <div className="app-form-group">
@@ -192,8 +186,6 @@ const InnerForm = (props) => {
                         <a href={`/student/${props.email_}`}>
                           <button className="app-form-button" onClick={() => { router.push(`/student/${props.email_}`) }} type="submit" >Submit</button></a>
                       </div>
-                      <a href={``}>
-                        <button className="app-form-button" type="submit" >View Changes</button></a>
 
 
                     </div>
@@ -217,7 +209,8 @@ const InnerForm = (props) => {
 const MyForm = withFormik({
   // Transform outer props into form values
   mapPropsToValues: (props) => ({
-    roll_no: props.email_,
+    email: props.email_,
+    rollno:props.roll_no_,
     name: props.name,
   }),
 
@@ -251,7 +244,7 @@ function AuthForm() {
     if (status === 'authenticated')
       return (
         <div>
-          <MyForm name={session.user.name} email_={session.user.email} />
+          <MyForm name={session.user.name} email_={session.user.email} roll_no_={session.user.email.split('@')[0]} />
         </div>
       )
     if (status === 'unauthenticated') {

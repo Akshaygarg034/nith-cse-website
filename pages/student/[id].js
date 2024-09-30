@@ -11,10 +11,10 @@ import * as FaIcons from "react-icons/fa";
 import Jump from 'react-reveal/Jump';
 import { EditOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import { signIn, signOut, useSession } from "next-auth/react"
 import { useRouter } from 'next/router';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function IdPage() {
     const [data, setData] = useState(null);
@@ -53,12 +53,17 @@ function IdPage() {
     const EditFunction = () => {
         let s = "Edit";
         if (status === 'unauthenticated') {
-            s = 'Sign in'
+            s = 'SignIn to edit'
         }
         if (status === 'authenticated') {
             const { id } = router.query
-            if (session.user.email.toLowerCase() === id.toLowerCase())
-                return <Button href="/form" target='_blank' type="default" shape="round" icon={<EditOutlined />} size='large' style={{ position: 'absolute', right: '6%', bottom: '2%' }}> {s}</Button>
+            const rollNo = session.user.email.split('@')[0];
+            if (rollNo.toLowerCase() === id.toLowerCase())
+                return <Button href="/form" target='_blank' type="default" shape="round" icon={<EditOutlined />} size='large' style={{ marginTop: '2%' }}> {s}</Button>
+        }
+
+        else {
+            return <Button onClick={() => signIn('google')} type="default" shape="round" icon={<EditOutlined />} size='large' style={{ marginTop: '2%' }}> {s}</Button>
         }
     }
 
@@ -99,7 +104,7 @@ function IdPage() {
                     strokeWidth={0}
                 />
                 <ScrollToTop smooth='true' width={30} height={30} style={scrollStyle} />
-                <section className='facultyDetails'>
+                <section className={styles.facultyDetails}>
                     <Login_></Login_>
                     <div className={styles.studentHeader}>
                         <div> <Image
@@ -113,25 +118,27 @@ function IdPage() {
 
                         <div className={styles.overlay} style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}></div>
                         <Navbar />
-                        <div className={styles.studentImage}>
-                            <AntdImage width={350} height={350} src="/avatar.webp" />
-                        </div>
+                        <div className={styles.headerBox}>
+                            <div className={styles.studentImage}>
+                                <AntdImage width={150} height={150} src="/avatar.webp" />
+                            </div>
 
-                        <div className={styles.headerText}>
-                            <h1>{data.name}</h1>
-                            <p>{data.rollno}</p>
-                            <Jump>
-                                <div className={styles.icons}>
-                                    <a href={data.github} target="_blank" className="fab"><FaIcons.FaGithub />
-                                    </a>
-                                    <a href={data.linkedin} target="_blank" className="fab"><FaIcons.FaLinkedin />
-                                    </a>
-                                </div>
-                            </Jump>
-                            <EditFunction />
-
+                            <div className={styles.headerText}>
+                                <h1>{data.name}</h1>
+                                <p>{data.rollno}</p>
+                                <Jump>
+                                    <div className={styles.icons}>
+                                        <a href={data.github} target="_blank" className="fab"><FaIcons.FaGithub />
+                                        </a>
+                                        <a href={data.linkedin} target="_blank" className="fab"><FaIcons.FaLinkedin />
+                                        </a>
+                                    </div>
+                                </Jump>
+                                <EditFunction />
+                            </div>
                         </div>
                     </div>
+                    <div className={styles.dummyHeader}></div>
                     <div className={styles.allDetails}>
 
                         <div className={styles.detail}>

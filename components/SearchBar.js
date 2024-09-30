@@ -23,14 +23,14 @@ export default function SearchBar(props) {
 
 
     return (
-        <Container maxWidth="md" style={{ textAlign: 'center' }}>
+        <Container maxWidth="md" style={{ textAlign: 'center', paddingBottom: '5%' }}>
             <TextField
                 id="search"
                 type="search"
                 label="Search"
                 value={searchTerm}
                 onChange={handleChange}
-                sx={{ width: 600 }}
+                sx={{ width: '80%'}}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="center">

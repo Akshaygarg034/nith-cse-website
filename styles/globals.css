@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap');
-/* Headings */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
-/* paragraphs */
 
 
 ::-webkit-scrollbar {
@@ -122,8 +120,9 @@ body {
 }
 
 .main {
-  height: 100vh;
+  height: 100%;
   justify-content: space-around;
+  position: absolute;
 }
 
 .box {
@@ -135,10 +134,8 @@ body {
   color: rgb(0, 0, 0);
   position: relative;
   overflow: hidden;
-  margin-bottom: 3%;
-  margin-top: 2%;
-  margin-right: 5%;
 }
+
 
 .box img {
   width: 100px;
@@ -312,7 +309,7 @@ body {
   font-size: 12px;
   margin-top: -1%;
   margin-left: -1%;
-  background-color: #ea1d6f;
+  background-color: #000;
 }
 
 .mainForm,
@@ -459,13 +456,13 @@ input {
   border-bottom: 1px solid #666;
   color: #ddd;
   font-size: 14px;
-  text-transform: uppercase;
   outline: none;
   transition: border-color .2s;
 }
 
 .app-form-control::placeholder {
   color: #666;
+  text-transform: uppercase;
 }
 
 .app-form-control:focus {
@@ -476,7 +473,7 @@ input {
   background: none;
   border: none;
   color: #ea1d6f;
-  font-size: 14px;
+  font-size: 20px;
   cursor: pointer;
   outline: none;
 }
@@ -530,6 +527,15 @@ input {
   .app-title:after {
     display: none;
   }
+}
+
+.about{
+  position: absolute;
+  overflow-x: clip;
+  left: 0;
+  top: 0;
+  height: auto;
+  width: 100%;
 }
 
 @media screen and (max-width: 1240px) {

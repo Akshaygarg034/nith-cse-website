@@ -356,6 +356,9 @@
 }
 
 @media screen and (max-width:600px){
+    .container{
+        height: 150vh;
+    }
     .box2{
         flex-direction: column;
     }
