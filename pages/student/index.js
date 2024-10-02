@@ -4,11 +4,8 @@ import Navbar from '../../components/Navbar'
 import styles from '../../styles/student_faculty.module.css'
 import ScrollToTop from "react-scroll-to-top";
 import UserCard from '@/components/usercard'
-import CustomCursor from 'custom-cursor-react';
-import 'custom-cursor-react/dist/index.css';
 import StudentGrid from '@/components/StudentGrid';
 import { useEffect, useState } from 'react';
-// import StudentData from '@/assets/studentData';
 import SearchBar from '@/components/SearchBar';
 import { useSession } from 'next-auth/react'
 import Avatar from '@mui/material/Avatar';
@@ -37,11 +34,11 @@ function student() {
     const [studentDataState, setstudentDatastate] = useState([]);
 
     useEffect(() => {
-        fetch('/api/get_many')
+        fetch('/api/fetchAllStudents')
             .then((response) => response.json())
             .then((data) => {
-                setstudentDatastate(data.items);
-                setAllStudentData(data.items);
+                setstudentDatastate(data);
+                setAllStudentData(data);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
@@ -56,22 +53,7 @@ function student() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/logo.png" />
             </Head>
-            <CustomCursor
-                targets={['#home', '#about', '#faculty', '#student', '#moreDetails']}
-                customClass='custom-cursor'
-                dimensions={100}
-                fill='skyblue'
-                smoothness={{
-                    movement: 0.3,
-                    scale: 0.1,
-                    opacity: 0.2,
-                }}
-                opacity={0.5}
-                targetOpacity={0.5}
-                targetScale={3}
-                strokeColor={'#000'}
-                strokeWidth={0}
-            />
+
             <ScrollToTop smooth='true' width={30} height={30} style={scrollStyle} />
             <div className={styles.faculty}>
                 <Navbar />
@@ -104,8 +86,8 @@ function student() {
                     <SearchBar allStudentData={allStudentData} studentData={studentDataState} setstudentData={setstudentDatastate} />
 
                     <div className={styles.cards}>
-                        {studentDataState.map(user => {
-                            return <UserCard key={user.key} user={user} />
+                        {studentDataState && studentDataState.map(user => {
+                            return <UserCard key={user._id} user={user} />
                         })}
                     </div>
                 </section>

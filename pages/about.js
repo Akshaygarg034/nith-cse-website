@@ -3,9 +3,6 @@ import Image from 'next/image';
 import Navbar from '../components/Navbar'
 import styles from '../styles/student_faculty.module.css'
 import ScrollToTop from "react-scroll-to-top";
-import CustomCursor from 'custom-cursor-react';
-import 'custom-cursor-react/dist/index.css';
-import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react'
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
@@ -37,22 +34,7 @@ function About() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" />
             </Head>
-            <CustomCursor
-                targets={['#home', '#about', '#faculty', '#student', '#moreDetails']}
-                customClass='custom-cursor'
-                dimensions={100}
-                fill='skyblue'
-                smoothness={{
-                    movement: 0.3,
-                    scale: 0.1,
-                    opacity: 0.2,
-                }}
-                opacity={0.5}
-                targetOpacity={0.5}
-                targetScale={3}
-                strokeColor={'#000'}
-                strokeWidth={0}
-            />
+
             <ScrollToTop smooth='true' width={30} height={30} style={scrollStyle} />
 
             <section className='about'>

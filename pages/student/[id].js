@@ -4,8 +4,6 @@ import Image from 'next/image';
 import { Image as AntdImage } from 'antd';
 import styles from '../../styles/student_faculty.module.css'
 import ScrollToTop from "react-scroll-to-top";
-import CustomCursor from 'custom-cursor-react';
-import 'custom-cursor-react/dist/index.css';
 import { useState, useEffect } from 'react';
 import * as FaIcons from "react-icons/fa";
 import Jump from 'react-reveal/Jump';
@@ -14,34 +12,31 @@ import { Button } from 'antd';
 import { useRouter } from 'next/router';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 function IdPage() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const router = useRouter()
 
+    useEffect(() => {
+        if (router.isReady) {
+            fetchData();
+        }
+    }, [router.isReady]);
+
     async function fetchData() {
         const { id } = router.query;
-        const response = await fetch(`/api/${id}`);
+        const response = await fetch(`/api/fetchStudentById?id=${id}`);
 
-        response.ok;     // => false
-        response.status; // => 404
-        const text = await response.json();
-        setLoading(false)
-        return text;
-    }
-
-    useEffect((() => {
-        const get_data = async () => {
-            const data2 = await fetchData()
-            if (data2) {
-                setData(data2);
-            }
+        if (response.ok) {
+            const text = await response.json();
+            setData(text);
+        } else {
+            console.error('Failed to fetch data:', response.status);
         }
-        get_data();
-
-    }), [loading])
+        setLoading(false);
+    }
 
     const scrollStyle = {
         height: '65px',
@@ -87,22 +82,6 @@ function IdPage() {
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <link rel="icon" href="/logo.png" />
                 </Head>
-                <CustomCursor
-                    targets={['#home', '#about', '#faculty', '#student', '#moreDetails']}
-                    customClass='custom-cursor'
-                    dimensions={100}
-                    fill='skyblue'
-                    smoothness={{
-                        movement: 0.3,
-                        scale: 0.1,
-                        opacity: 0.2,
-                    }}
-                    opacity={0.5}
-                    targetOpacity={0.5}
-                    targetScale={3}
-                    strokeColor={'#000'}
-                    strokeWidth={0}
-                />
                 <ScrollToTop smooth='true' width={30} height={30} style={scrollStyle} />
                 <section className={styles.facultyDetails}>
                     <Login_></Login_>
@@ -116,11 +95,11 @@ function IdPage() {
                             width="0"
                         /></div>
 
-                        <div className={styles.overlay} style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}></div>
+                        <div className={styles.overlay} style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}></div>
                         <Navbar />
                         <div className={styles.headerBox}>
                             <div className={styles.studentImage}>
-                                <AntdImage width={150} height={150} src="/avatar.webp" />
+                                <AntdImage width={150} height={150} src={data.image} />
                             </div>
 
                             <div className={styles.headerText}>
@@ -170,7 +149,7 @@ function IdPage() {
                             <div className={styles.data}>
                                 <div><p>Email:</p><span>{data.email}</span></div>
                                 <div><p>Phone:</p><span>{data.phone}</span></div>
-                                <div><p>Website:</p><a href={data.website} target="_blank" style={{ color: "#9e4646" }}>Personal Website</a></div>
+                                <div><p>Portfolio:</p><a href={data.portfolio} target="_blank" style={{ color: "#9e4646" }}>Personal Website</a></div>
                             </div>
                         </div>
 
@@ -180,8 +159,8 @@ function IdPage() {
                                 <div></div>
                             </div>
                             <div className={styles.data}>
-                                <div><p>10th:</p><span>{data.education_10}</span></div>
-                                <div><p>12th:</p><span>{data.education_12}</span></div>
+                                <div><p>10th:</p><span>{data.education10}</span></div>
+                                <div><p>12th:</p><span>{data.education12}</span></div>
                             </div>
                         </div>
 
@@ -201,9 +180,9 @@ function IdPage() {
                                 <div></div>
                             </div>
                             <div className={`${styles.data} ${styles.skills}`}>
-                                <div><p>C/C++</p></div>
-                                <div><p>OOPs</p></div>
-                                <div><p>DSA</p></div>
+                                {data.skills.map((skill, index) => {
+                                    return <div key={index}><p>{skill}</p></div>
+                                })}
                             </div>
                         </div>
                     </div>

@@ -2,8 +2,6 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import ScrollToTop from "react-scroll-to-top";
-import CustomCursor from 'custom-cursor-react';
-import 'custom-cursor-react/dist/index.css';
 import Announcements from '../components/Announcements';
 import MainGrid from '../components/MainGrid';
 
@@ -32,22 +30,6 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.png" />
       </Head>
-      <CustomCursor
-        targets={['#home', '#about', '#faculty', '#student', '#moreDetails']}
-        customClass='custom-cursor'
-        dimensions={100}
-        fill='#FFF'
-        smoothness={{
-          movement: 0.3,
-          scale: 0.1,
-          opacity: 0.2,
-        }}
-        opacity={0.7}
-        targetOpacity={0.5}
-        targetScale={3}
-        strokeColor={'#000'}
-        strokeWidth={0}
-      />
       <ScrollToTop smooth='true' width={30} height={30} style={scrollStyle} />
       <Header />
       <MainGrid />

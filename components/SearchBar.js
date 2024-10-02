@@ -14,7 +14,7 @@ export default function SearchBar(props) {
             const newData = allStudentData.filter((data) => {
                 return (data.name &&
                     (data.name.toLowerCase().includes(newSearchTerm.toLowerCase()) ||
-                    data.rollno.toLowerCase().includes(newSearchTerm.toLowerCase()))
+                    data._id.toLowerCase().includes(newSearchTerm.toLowerCase()))
                 );
             });
             setstudentData(newData);
@@ -33,7 +33,7 @@ export default function SearchBar(props) {
                 sx={{ width: '80%'}}
                 InputProps={{
                     endAdornment: (
-                        <InputAdornment position="center">
+                        <InputAdornment position="end">
                             <SearchIcon />
                         </InputAdornment>
                     ),

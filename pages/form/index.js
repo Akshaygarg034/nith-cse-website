@@ -1,258 +1,172 @@
 import { withFormik, Form, Field } from 'formik';
-import { useSession, signIn } from "next-auth/react"
-import 'custom-cursor-react/dist/index.css';
-import { Router, useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useSession, signIn } from "next-auth/react";
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 const ERROR_MSG = 'Oops! Something went wrong 🤷‍♂️';
-const fetchData = async ({ url, options }) => {
-  const response = await fetch(url, options);
 
+const updateData = async ({ url, options }) => {
+  const response = await fetch(url, options);
   if (!response.ok) {
     throw new Error(ERROR_MSG);
   }
-
-  const data = await response.json();
-  return data;
+  return response.json();
 };
 
-const InnerForm = (props) => {
-  const { getFieldProps } = props;
-  const router = useRouter()
-  useEffect(() => {
-    // Apply styles to the body
-    document.body.style.backgroundColor = '#000';
+// Converting comma separated skills to list
+const processSkills = (skills) => {
+  if (typeof skills === 'string') {
+    return skills.split(',').map(skill => skill.trim());
+  }
+  return skills;
+};
 
-    // Clean up styles when the component unmounts
+const InnerForm = ({ values, handleChange, handleSubmit, setValues, initialData }) => {
+  const router = useRouter();
+  const [useExistingData, setUseExistingData] = useState(false);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = '#000';
     return () => {
       document.body.style.backgroundColor = '';
     };
   }, []);
 
+  useEffect(() => {
+    if (useExistingData) {
+      setValues(initialData);
+    } else {
+      setValues({
+        name: '',
+        _id: '',
+        email: '',
+        phone: '',
+        semester: '',
+        cgpa: '',
+        skills: '',
+        portfolio: '',
+        education10: '',
+        education12: '',
+        about: '',
+        image: '',
+        github: '',
+        linkedin: ''
+      });
+    }
+  }, [useExistingData, initialData, setValues]);
+
+  const handleCheckboxChange = () => {
+    setUseExistingData(!useExistingData);
+  };
+
   return (
-    <>
-      <div className="flex text-white justify-around mainForm">
-
-        <div className="background">
-          <div className="container">
-            <div className="screen">
-              <div className="screen-header">
-                <div className="screen-header-left">
-                  <div className="screen-header-button close"></div>
-                  <div className="screen-header-button maximize"></div>
-                  <div className="screen-header-button minimize"></div>
-                </div>
-
+    <div className="flex text-white justify-around mainForm">
+      <div className="background">
+        <div className="container">
+          <div className="screen">
+            <div className="screen-header">
+              <div className="screen-header-left">
+                <div className="screen-header-button close"></div>
+                <div className="screen-header-button maximize"></div>
+                <div className="screen-header-button minimize"></div>
               </div>
-              <Form>
-                <div className="screen-body">
-                  <div className="screen-body-item left">
-                    <div className="app-title">
-                      <span>Registration</span>
-                      <span>Form</span>
-                    </div>
-                    <div className="upload_title">
-
-                      <input className="app-form-control" placeholder="Profile Photo Drive Link"
-                        type="text"
-                        name="photo_link" id="photo_link"
-                        {...getFieldProps('photo_link')}
-                      />
-                      <input className="app-form-control" placeholder="Github Profile"
-                        type="text"
-                        name="github" id="github"
-                        {...getFieldProps('github')}
-                      />
-                      <input className="app-form-control" placeholder="Linkedin Profile"
-                        type="text"
-                        name="linkedin" id="linkedin"
-                        {...getFieldProps('linkedin')}
-                      />
-
-                    </div>
-
+            </div>
+            <Form onSubmit={handleSubmit}>
+              <div className="screen-body">
+                <div className="screen-body-item left">
+                  <div className="app-title">
+                    <span>Registration</span>
+                    <span>Form</span>
                   </div>
-                  <div className="screen-body-item">
-                    <div className="app-form">
-                      <div className="app-form-group">
-                        <input
-                          className="app-form-control"
-                          placeholder="NAME"
-                          name="name" id="name"
-
-                          type="text"
-                          {...getFieldProps('name')}
-                          readOnly
-                        />
-                      </div>
-                      <div className="app-form-group">
-                        <input className="app-form-control" placeholder="Roll_no"
-                          type="text"
-                          name="roll_no" id="roll_no"
-                          {...getFieldProps('rollno')}
-                          readOnly
-                        />
-                      </div>
-                      <div className="app-form-group">
-                        <input
-                          name="email" id="email"
-                          type="email"
-                          className="app-form-control"
-                          placeholder="Email"
-                          {...getFieldProps('email')}
-                          readOnly
-                        />
-                      </div>
-                      <div className="app-form-group">
-                        <input
-                          name="phone" id="phone"
-                          type="number"
-                          className="app-form-control"
-                          placeholder="phone no"
-
-                          {...getFieldProps('phone')}
-                        />
-                      </div>
-                      <div className="app-form-group">
-                        <input
-                          className="app-form-control"
-                          placeholder="smester"
-                          name="smester" id="smester"
-                          type="number"
-                          {...getFieldProps('smester')}
-
-                        />
-                      </div>
-
-                      <div className="app-form-group">
-                        <input
-                          name="cgpa" id="cgpa"
-                          type="number"
-                          className="app-form-control"
-                          placeholder="cgpa"
-                          {...getFieldProps('cgpa')}
-                        />
-                      </div>
-                      <div className="app-form-group message">
-                        <input className="app-form-control" placeholder="skill_1"
-                          type="text"
-                          name="skill_1" id="skill_1"
-                          {...getFieldProps('skill_1')}
-                        />
-                      </div>
-                      <div className="app-form-group message">
-                        <input className="app-form-control" placeholder="skill_2"
-                          type="text"
-                          name="skill_2" id="skill_2"
-                          {...getFieldProps('skill_2')}
-                        />
-                      </div>
-                      <div className="app-form-group message">
-                        <input className="app-form-control" placeholder="skill_3"
-                          type="text"
-                          name="skill_3" id="skill_3"
-                          {...getFieldProps('skill_3')}
-                        />
-                      </div>
-                      <div className="app-form-group message">
-                        <input className="app-form-control" placeholder="Personal Website"
-                          type="text"
-                          name="website" id="website"
-                          {...getFieldProps('website')}
-                        />
-                      </div>
-                      <div className="app-form-group message">
-                        <input className="app-form-control" placeholder="education_10th"
-                          type="text"
-                          name="education_10th" id="education_10th"
-                          {...getFieldProps('education_10th')}
-                        />
-                      </div>
-                      <div className="app-form-group message">
-                        <input className="app-form-control" placeholder="education_12th"
-                          type="text"
-                          name="education_12th" id="education_12th"
-                          {...getFieldProps('education_12th')}
-                        />
-                      </div>
-                      <div className="app-form-group message">
-                        <input className="app-form-control" placeholder="about"
-                          type="text"
-                          name="about" id="about"
-                          {...getFieldProps('about')}
-                        />
-                      </div>
-                      <div className="app-form-group buttons">
-                        <a href={`/student/${props.email_}`}>
-                          <button className="app-form-button" onClick={() => { router.push(`/student/${props.email_}`) }} type="submit" >Submit</button></a>
-                      </div>
-
-
+                  <div className="upload_title">
+                    <Field className="app-form-control" placeholder="Profile Photo Hosted Link" name="image" />
+                    <Field className="app-form-control" placeholder="Github Profile" name="github" />
+                    <Field className="app-form-control" placeholder="Linkedin Profile" name="linkedin" />
+                  </div>
+                </div>
+                <div className="screen-body-item">
+                  <div className="app-form">
+                    <label className='autofill-label'>
+                      <Field type="checkbox" className="autofill-checkbox" checked={useExistingData} onChange={handleCheckboxChange} />
+                      Auto-fill with Existing Data
+                    </label>
+                    <Field className="app-form-control readonly-field" placeholder="NAME" name="name" readOnly />
+                    <Field className="app-form-control readonly-field" placeholder="Roll_no" name="_id" readOnly />
+                    <Field className="app-form-control readonly-field" placeholder="Email" name="email" type="email" readOnly />
+                    <Field className="app-form-control" placeholder="Phone no" name="phone"/>
+                    <Field className="app-form-control readonly-field" placeholder="Semester" name="semester" readOnly />
+                    <Field className="app-form-control readonly-field" placeholder="CGPA" name="cgpa" readOnly />
+                    <Field className="app-form-control" placeholder="Skills (comma separated)" name="skills" />
+                    <Field className="app-form-control" placeholder="Personal Website" name="portfolio" />
+                    <Field className="app-form-control" placeholder="10th Education" name="education10" />
+                    <Field className="app-form-control" placeholder="12th Education" name="education12" />
+                    <Field className="app-form-control" placeholder="About" name="about" />
+                    <div className="app-form-group buttons">
+                      <button className="app-form-button" type="submit">Submit</button>
                     </div>
                   </div>
                 </div>
-              </Form>
-
-
-            </div>
-
+              </div>
+            </Form>
           </div>
         </div>
-
       </div>
-
-    </>
+    </div>
   );
 };
 
-
 const MyForm = withFormik({
-  // Transform outer props into form values
-  mapPropsToValues: (props) => ({
-    email: props.email_,
-    rollno:props.roll_no_,
-    name: props.name,
+  mapPropsToValues: ({ initialData }) => ({
+    ...initialData,
   }),
-
-  // Add a custom validation function (this can be async too!)
   validate: (values) => {
     const errors = {};
-
     return errors;
   },
-
-  handleSubmit: async (values) => {
-    console.log(values)
+  handleSubmit: async (values, { props }) => {
+    const processedValues = {
+      ...values,
+      skills: processSkills(values.skills),
+    };
     const options = {
       method: 'POST',
-      body: JSON.stringify({ ...values, ['key']: values.email_ }),
-      headers: {
-      },
+      body: JSON.stringify(processedValues),
+      headers: { 'Content-Type': 'application/json' },
     };
-    await fetchData({ url: '/api/96/create', options });
-
-    // do submitting things
+    console.log('body', options.body);
+    await updateData({ url: `/api/updateStudent?id=${values._id}`, options });
+    props.router.push(`/student/${values._id}`);
   },
 })(InnerForm);
 
 function AuthForm() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const [initialData, setInitialData] = useState(null);
 
-  const { data: session, status } = useSession()
-  if (typeof window !== "undefined") {
-    // Client-side-only code
-
-    if (status === 'authenticated')
-      return (
-        <div>
-          <MyForm name={session.user.name} email_={session.user.email} roll_no_={session.user.email.split('@')[0]} />
-        </div>
-      )
+  useEffect(() => {
     if (status === 'unauthenticated') {
-      signIn('google', { callbackUrl: `${process.env.GOOGLE_ID}/form` })
+      signIn('google', { callbackUrl: `${process.env.GOOGLE_ID}/form` });
+    } else if (status === 'authenticated') {
+      // Fetch initial data
+      const fetchInitialData = async () => {
+        const response = await fetch(`/api/fetchStudentById?id=${session.user.email.split('@')[0]}`);
+        const data = await response.json();
+        setInitialData(data);
+      };
+      fetchInitialData();
     }
+  }, [status]);
 
-
-
+  if (status === 'authenticated' && initialData) {
+    return (
+      <div>
+        <MyForm initialData={initialData} router={router} />
+      </div>
+    );
   }
+
+  return null;
 }
+
 export default AuthForm;
