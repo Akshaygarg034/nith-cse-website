@@ -3,12 +3,12 @@ import clientPromise from '../../middleware/mongodb'
 
 export default async function handler(req, res) {
   const client = await clientPromise
-  const db = client.db('nith-db')
+  const db = client.db(process.env.DB_NAME)
 
   if (req.method === 'GET') {
     const { id } = req.query
     try {
-      const student = await db.collection('students').findOne({ _id: id })
+      const student = await db.collection(process.env.STUDENT_COLLECTION).findOne({ _id: id })
       if (student) {
         res.status(200).json(student)
       } else {

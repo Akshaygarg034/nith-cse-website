@@ -12,8 +12,8 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
       try {
         const client = await clientPromise
-        const db = client.db('nith-db')
-        new_user = await db.collection('students').updateOne(
+        const db = client.db(process.env.DB_NAME)
+        new_user = await db.collection(process.env.STUDENT_COLLECTION).updateOne(
           { _id: id },
           { $set: req.body },
           { upsert: true }

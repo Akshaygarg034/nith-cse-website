@@ -28,11 +28,15 @@ function faculty() {
         borderRadius: '50%',
     }
     const [facultyData, setFD] = useState([])
-    useEffect((() => {
-        fetch('/api/faculty').then((data) => (data.json())).then((d) => (setFD(d.items)));
-        //console.log(data)
-        //setstudentData(data);
-    }), [])
+
+    useEffect(() => {
+        fetch('/api/faculty')
+          .then((response) => response.json())
+          .then((data) => {
+            setFD(data);
+          })
+          .catch((error) => console.error('Error fetching faculty data:', error));
+      }, []);
 
     return (
         <>
@@ -85,7 +89,7 @@ function faculty() {
                         <div></div>
                     </div>
                     <div className={styles.cards}>
-                        {facultyData.map(user => {
+                        {facultyData && facultyData.map(user => {
                             return <FacultyCard key={user.id} user={user} />
                         })}
                     </div>
