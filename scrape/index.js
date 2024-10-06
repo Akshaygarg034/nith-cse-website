@@ -2,6 +2,7 @@ const express = require('express');
 const cron = require('node-cron');
 const scrapeUpcomingEvents = require('./scraper-functions/scrapeUpcomingEvents');
 const scrapeFaculties = require('./scraper-functions/scrapeFaculties');
+const scrapeStudents = require('./scraper-functions/scrapeStudents');
 require('dotenv').config();
 
 // Set the timezone to Indian Standard Time (IST)
@@ -21,7 +22,7 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-// Schedule the task to run daily at 12:00 AM IST
+// Schedule Scraping Upcoming Events task to run daily at 12:00 AM IST
 cron.schedule('0 0 * * *', () => {
   console.log('Running scrapeUpcomingEvents...');
   scrapeUpcomingEvents();
@@ -30,7 +31,7 @@ cron.schedule('0 0 * * *', () => {
   timezone: "Asia/Kolkata"
 });
 
-// Schedule the task to run on the 1st of August at 12:00 AM IST
+// Schedule Scraping Faculties task to run on the 1st of August at 12:00 AM IST
 cron.schedule('0 0 1 8 *', () => {
   console.log('Running scrapeFaculties...');
   scrapeFaculties();
@@ -38,3 +39,13 @@ cron.schedule('0 0 1 8 *', () => {
   scheduled: true,
   timezone: "Asia/Kolkata"
 });
+
+
+// Schedule Scraping students task to run on the 1st of September at 12:00 AM IST
+cron.schedule('0 0 1 9 *', () => {
+    console.log('Running scrapeStudents...');
+    scrapeStudents();
+  }, {
+    scheduled: true,
+    timezone: "Asia/Kolkata"
+  });

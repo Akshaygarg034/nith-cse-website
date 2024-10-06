@@ -125,8 +125,10 @@ body {
 }
 
 .box {
-  width: 270px;
-  height: 275px;
+  width: auto;
+  height: auto;
+  min-height: 275px;
+  min-width: 275px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.288);
   border-radius: 23px;
   flex-direction: column;
