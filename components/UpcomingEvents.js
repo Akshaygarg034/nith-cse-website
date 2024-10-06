@@ -1,39 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import Fade from 'react-reveal/Fade';
 
-function Announcements() {
-    const [announcements, setAnnouncements] = useState([]);
+function UpcomingEvents() {
+    const [events, setEvents] = useState([]);
 
     useEffect(() => {
-        const fetchAnnouncements = async () => {
+        const fetchUpcomingEvents = async () => {
             try {
-                const response = await fetch('/api/announcements');
+                const response = await fetch('/api/upcomingEvents');
                 const data = await response.json();
                 // console.log('data', data)
-                setAnnouncements(data);
+                setEvents(data);
             } catch (error) {
-                console.error('Error fetching announcements:', error);
+                console.error('Error fetching events:', error);
             }
         };
 
-        fetchAnnouncements();
+        fetchUpcomingEvents();
     }, []);
 
     return (
         <div>
             <section className='announcement_section'>
                 <div className="heading">
-                    <h1>Announcements</h1>
+                    <h1>Upcoming Events</h1>
                     <div></div>
                 </div>
                 <Fade left>
                     <div className="announcementBox">
-                        {announcements.map((announcement, index) => (
+                        {events.map((event, index) => (
                             <div className='announcement' key={index}>
-                                <span>{announcement.date}</span>
+                                <span>{event.date}</span>
                                 <p>
-                                    <a href={announcement.link} target="_blank" rel="noopener noreferrer">
-                                        {announcement.title}
+                                    <a href={event.link} target="_blank" rel="noopener noreferrer">
+                                        {event.title}
                                     </a>
                                 </p>
                             </div>
@@ -45,4 +45,4 @@ function Announcements() {
     );
 }
 
-export default Announcements;
+export default UpcomingEvents;

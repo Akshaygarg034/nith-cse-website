@@ -27,9 +27,9 @@ function UserCard({ user }) {
                             })}
                         </div>
                         <div className="icons">
-                            <a href="#" target="_blank" className="fab"><FaIcons.FaGithub />
+                            <a href={user.github} target="_blank" className="fab"><FaIcons.FaGithub />
                             </a>
-                            <a href="#" target="_blank" className="fab"><FaIcons.FaLinkedin />
+                            <a href={user.linkedin} target="_blank" className="fab"><FaIcons.FaLinkedin />
                             </a>
                         </div>
                         <div className='findMore'><Link href={`student/${user._id}`}>Find More <AiOutlineRight /></Link></div>

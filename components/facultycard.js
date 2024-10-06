@@ -12,7 +12,7 @@ function FacultyCard({ user }) {
             <div className="box center">
                 <img src={user.img} alt="" />
                 <div className='card-text'>
-                    <p className="user_name" style={{ fontSize: '1.6em' }}>{user.name}</p>
+                    <p className="user_name" style={{ fontSize: '1.5em' }}>{user.name}</p>
                     <p className="skill">{user.role}</p>
                 </div>
                 <div className="arr_container center" onClick={() => setDetailActive(true)} >

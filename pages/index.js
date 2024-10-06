@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import ScrollToTop from "react-scroll-to-top";
-import Announcements from '../components/Announcements';
+import Announcements from '../components/UpcomingEvents';
 import MainGrid from '../components/MainGrid';
 
 export default function Home() {
