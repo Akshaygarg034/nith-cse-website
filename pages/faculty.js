@@ -8,9 +8,13 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react'
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
+import Loader from '../components/Loader'
+import Footer from '../components/Footer'
 
 function faculty() {
     const { data: session, status } = useSession()
+    const [isLoading, setIsLoading] = useState(true);
+
     const Login_ = () => {
         if (status === 'authenticated') {
             return <Chip
@@ -30,13 +34,19 @@ function faculty() {
     const [facultyData, setFD] = useState([])
 
     useEffect(() => {
-        fetch('/api/faculty')
-          .then((response) => response.json())
-          .then((data) => {
-            setFD(data);
-          })
-          .catch((error) => console.error('Error fetching faculty data:', error));
-      }, []);
+        const fetchFacultyData = async () => {
+            try {
+                const response = await fetch('/api/faculty');
+                const data = await response.json();
+                setFD(data);
+            } catch (error) {
+                console.error('Error fetching faculty data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchFacultyData();
+    }, []);
 
     return (
         <>
@@ -46,14 +56,14 @@ function faculty() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/logo.png" />
             </Head>
-    
+
             <ScrollToTop smooth='true' width={30} height={30} style={scrollStyle} />
             <div className={styles.faculty}>
                 <Navbar />
                 <div className={styles.wideImage}>
                     <Login_></Login_>
                     <Image
-                        src="https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225360/nith-cse-website/pqqnuky398dmncxvkp9d.jpg"
+                        src="https://res.cloudinary.com/dz1vsgxm5/image/upload/nith-cse-website/fpeajqzcabve34vkfd3q.jpg"
                         className="halfPagePics"
                         alt=""
                         sizes="62vw"
@@ -63,7 +73,7 @@ function faculty() {
                     <h1>Faculty</h1>
                     <p>The curiosity and tenacity that drives our faculty’s research and creativity make their classrooms exciting places to be.</p>
                 </div>
-                <div className={styles.dummyFacultyHeader} style={{height: '62vh'}}></div>
+                <div className={styles.dummyFacultyHeader} style={{ height: '62vh' }}></div>
                 <section className={styles.messageSection}>
                     <div className={styles.heading}>
                         <h1>Message from the Dean</h1>
@@ -88,12 +98,18 @@ function faculty() {
                         <h1>Our Renowned Faculty</h1>
                         <div></div>
                     </div>
-                    <div className={styles.cards}>
-                        {facultyData && facultyData.map(user => {
-                            return <FacultyCard key={user.id} user={user} />
-                        })}
-                    </div>
+                    {isLoading ? (
+                        <Loader />
+                    ) : (
+                        <div className={styles.cards}>
+                            {facultyData && facultyData.map(user => {
+                                return <FacultyCard key={user.id} user={user} />
+                            })}
+                        </div>
+                    )}
                 </section>
+
+                <Footer />
             </div>
         </>
     )

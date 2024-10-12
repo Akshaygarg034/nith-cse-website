@@ -30,8 +30,8 @@ function IdPage() {
         const response = await fetch(`/api/fetchStudentById?id=${id}`);
 
         if (response.ok) {
-            const text = await response.json();
-            setData(text);
+            const data = await response.json();
+            setData(data);
         } else {
             console.error('Failed to fetch data:', response.status);
         }
@@ -54,7 +54,7 @@ function IdPage() {
             const { id } = router.query
             const rollNo = session.user.email.split('@')[0];
             if (rollNo.toLowerCase() === id.toLowerCase())
-                return <Button href="/form" target='_blank' type="default" shape="round" icon={<EditOutlined />} size='large' style={{ marginTop: '2%' }}> {s}</Button>
+                return <Button href="/form" type="default" shape="round" icon={<EditOutlined />} size='large' style={{ marginTop: '2%' }}> {s}</Button>
         }
 
         else {
@@ -87,7 +87,7 @@ function IdPage() {
                     <Login_></Login_>
                     <div className={styles.studentHeader}>
                         <div> <Image
-                            src="https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225363/nith-cse-website/ckozsgzag0uk4b20nuji.jpg"
+                            src="https://res.cloudinary.com/dz1vsgxm5/image/upload/nith-cse-website/cwvtkddwckfmwxzq9vzf.jpg"
                             className="fullPagePics"
                             alt=""
                             sizes="100vw"
@@ -107,9 +107,9 @@ function IdPage() {
                                 <p>{data.rollno}</p>
                                 <Jump>
                                     <div className={styles.icons}>
-                                        <a href={data.github} target="_blank" className="fab"><FaIcons.FaGithub />
+                                        <a href={data.github ? data.github : "#"} target="_blank" className="fab"><FaIcons.FaGithub />
                                         </a>
-                                        <a href={data.linkedin} target="_blank" className="fab"><FaIcons.FaLinkedin />
+                                        <a href={data.linkedin ? data.linkedin : "#"} target="_blank" className="fab"><FaIcons.FaLinkedin />
                                         </a>
                                     </div>
                                 </Jump>
@@ -122,11 +122,20 @@ function IdPage() {
 
                         <div className={styles.detail}>
                             <div className={styles.heading}>
-                                <h1>About</h1>
+                                <h1>Personal Details</h1>
                                 <div></div>
                             </div>
                             <div className={styles.data}>
-                                <p>{data.about}</p>
+                                <div><p>Father's Name:</p><span>{data.fathers_name}</span></div>
+                                <div><p>About:</p><span>{data.about ? data.about : "Not added"}</span></div>
+                                <div>
+                                    <p>Portfolio:</p>
+                                    {data.portfolio ? (
+                                        <a href={data.portfolio} target="_blank" style={{ color: "#9e4646" }}>Personal Website</a>
+                                    ) : (
+                                        <span>Not added</span>
+                                    )}
+                                </div>
                             </div>
                         </div>
 
@@ -136,8 +145,8 @@ function IdPage() {
                                 <div style={{ marginLeft: '-46%' }}></div>
                             </div>
                             <div className={styles.data}>
-                                <div><p>Semester:</p><span>{data.semester}</span></div>
-                                <div><p>CGPA:</p><span>{data.cgpa}</span></div>
+                                <div><p>Batch:</p><span>{data.batch}</span></div>
+                                <div><p>CGPA:</p><span>{data.cgpi}</span></div>
                             </div>
                         </div>
 
@@ -148,8 +157,7 @@ function IdPage() {
                             </div>
                             <div className={styles.data}>
                                 <div><p>Email:</p><span>{data.email}</span></div>
-                                <div><p>Phone:</p><span>{data.phone}</span></div>
-                                <div><p>Portfolio:</p><a href={data.portfolio} target="_blank" style={{ color: "#9e4646" }}>Personal Website</a></div>
+                                <div><p>Phone:</p><span>{data.phone ? data.phone : "Not added"}</span></div>
                             </div>
                         </div>
 
@@ -159,8 +167,8 @@ function IdPage() {
                                 <div></div>
                             </div>
                             <div className={styles.data}>
-                                <div><p>10th:</p><span>{data.education10}</span></div>
-                                <div><p>12th:</p><span>{data.education12}</span></div>
+                                <div><p>10th:</p><span>{data.education10 ? data.education10 : "Not added"}</span></div>
+                                <div><p>12th:</p><span>{data.education12 ? data.education12 : "Not added"}</span></div>
                             </div>
                         </div>
 
@@ -170,7 +178,7 @@ function IdPage() {
                                 <div></div>
                             </div>
                             <div className={styles.data}>
-                                <p>{data.address}</p>
+                                <p>{data.address ? data.address : "Not added"}</p>
                             </div>
                         </div>
 
@@ -181,7 +189,7 @@ function IdPage() {
                             </div>
                             <div className={`${styles.data} ${styles.skills}`}>
                                 {data.skills.map((skill, index) => {
-                                    return <div key={index}><p>{skill}</p></div>
+                                    return <div key={index}><p>{skill ? skill : "Not added"}</p></div>
                                 })}
                             </div>
                         </div>

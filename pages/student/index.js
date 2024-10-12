@@ -5,15 +5,25 @@ import styles from '../../styles/student_faculty.module.css'
 import ScrollToTop from "react-scroll-to-top";
 import UserCard from '@/components/usercard'
 import StudentGrid from '@/components/StudentGrid';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import SearchBar from '@/components/SearchBar';
 import { useSession } from 'next-auth/react'
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import Fade from 'react-reveal/Fade';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Loader from '../../components/Loader'
+import Footer from '../../components/Footer'
 
 function student() {
     const { data: session, status } = useSession()
+    const [studentDataState, setStudentDataState] = useState([]);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const searchTermRef = useRef("");
+    const initialLoadDone = useRef(false);
+
     const Login_ = () => {
         if (status === 'authenticated') {
             return <Chip
@@ -30,20 +40,49 @@ function student() {
         width: '65px',
         borderRadius: '50%',
     }
-    const [allStudentData, setAllStudentData] = useState([]);
-    const [studentDataState, setstudentDatastate] = useState([]);
 
-    useEffect(() => {
-        fetch('/api/fetchAllStudents')
+    const fetchStudents = useCallback((reset = false) => {
+        if (isLoading || !hasMore) return;  // Prevent duplicate calls if already loading
+        setIsLoading(true);
+
+        const currentPage = reset ? 1 : page;
+
+        fetch(`/api/fetchAllStudents?page=${currentPage}&limit=12&search=${searchTermRef.current}`)
             .then((response) => response.json())
             .then((data) => {
-                setstudentDatastate(data);
-                setAllStudentData(data);
+                // console.log("data", data);
+                if (reset) {
+                    setStudentDataState(data.students);
+                } else {
+                    setStudentDataState((prevStudents) => [...prevStudents, ...data.students]);
+                }
+
+                setPage(currentPage + 1); 
+                if (data.students.length < 12) {
+                    setHasMore(false);
+                }
+                setIsLoading(false);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
+                setIsLoading(false);
             });
-    }, []);
+    }, [isLoading, hasMore, page]);
+
+    useEffect(() => {
+        if (!initialLoadDone.current) {
+            fetchStudents(true);
+            initialLoadDone.current = true;
+        }
+    }, [fetchStudents]);
+
+    const handleSearch = (newSearchTerm) => {
+        searchTermRef.current = newSearchTerm;
+        setPage(1);
+        setHasMore(true);
+        setStudentDataState([]);
+        fetchStudents(true);
+    };
 
     return (
         <>
@@ -60,12 +99,13 @@ function student() {
                 <div className={styles.wideImage} style={{ height: '100vh' }}>
                     <Login_></Login_>
                     <Image
-                        src="https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225367/nith-cse-website/vlusyosxr9ddv7mk8blb.jpg"
+                        src="https://res.cloudinary.com/dz1vsgxm5/image/upload/nith-cse-website/mt9mdxioboq4pvlm2ehw.jpg"
                         className="fullPagePics"
                         alt=""
                         sizes="100vw"
                         height="0"
                         width="0"
+                        priority={true}
                     />
                     <div className={styles.overlay}></div>
                     <h1>Students</h1>
@@ -83,14 +123,21 @@ function student() {
                         </div>
                     </Fade>
 
-                    <SearchBar allStudentData={allStudentData} studentData={studentDataState} setstudentData={setstudentDatastate} />
-
-                    <div className={styles.cards}>
-                        {studentDataState && studentDataState.map(user => {
-                            return <UserCard key={user._id} user={user} />
-                        })}
-                    </div>
+                    <SearchBar handleSearch={handleSearch} />
+                    <InfiniteScroll
+                        dataLength={studentDataState.length}
+                        next={fetchStudents}
+                        hasMore={hasMore}
+                        loader={Loader}
+                    >
+                        <div className={styles.cards}>
+                            {studentDataState && studentDataState.map(user => {
+                                return <UserCard key={user._id} user={user} />
+                            })}
+                        </div>
+                    </InfiniteScroll>
                 </section>
+                <Footer />
             </div>
         </>
     )

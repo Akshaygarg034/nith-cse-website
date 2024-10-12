@@ -24,6 +24,7 @@ const processSkills = (skills) => {
 const InnerForm = ({ values, handleChange, handleSubmit, setValues, initialData }) => {
   const router = useRouter();
   const [useExistingData, setUseExistingData] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     document.body.style.backgroundColor = '#000';
@@ -35,28 +36,47 @@ const InnerForm = ({ values, handleChange, handleSubmit, setValues, initialData 
   useEffect(() => {
     if (useExistingData) {
       setValues(initialData);
+      validateForm(initialData);
     } else {
-      setValues({
+      const emptyValues = {
         name: '',
+        fathers_name: '',
         _id: '',
         email: '',
         phone: '',
-        semester: '',
-        cgpa: '',
+        batch: '',
+        cgpi: '',
+        class_rank: '',
+        branch_rank: '',
+        year_rank: '',
         skills: '',
         portfolio: '',
         education10: '',
         education12: '',
         about: '',
+        address: '',
         image: '',
         github: '',
         linkedin: ''
-      });
+      };
+      setValues(emptyValues);
+      validateForm(emptyValues);
     }
   }, [useExistingData, initialData, setValues]);
 
   const handleCheckboxChange = () => {
     setUseExistingData(!useExistingData);
+  };
+
+  const validateForm = (values) => {
+    const requiredFields = ['phone', 'skills', 'portfolio', 'education10', 'education12', 'about', 'address', 'image', 'github', 'linkedin'];
+    const isValid = requiredFields.every(field => values[field] && String(values[field]).trim() !== '');
+    setIsFormValid(isValid);
+  };
+
+  const handleFieldChange = (e) => {
+    handleChange(e);
+    validateForm({ ...values, [e.target.name]: e.target.value });
   };
 
   return (
@@ -79,9 +99,9 @@ const InnerForm = ({ values, handleChange, handleSubmit, setValues, initialData 
                     <span>Form</span>
                   </div>
                   <div className="upload_title">
-                    <Field className="app-form-control" placeholder="Profile Photo Hosted Link" name="image" />
-                    <Field className="app-form-control" placeholder="Github Profile" name="github" />
-                    <Field className="app-form-control" placeholder="Linkedin Profile" name="linkedin" />
+                    <Field className="app-form-control" placeholder="Profile Photo Hosted Link" name="image" onChange={handleFieldChange} />
+                    <Field className="app-form-control" placeholder="Github Profile" name="github" onChange={handleFieldChange} />
+                    <Field className="app-form-control" placeholder="Linkedin Profile" name="linkedin" onChange={handleFieldChange} />
                   </div>
                 </div>
                 <div className="screen-body-item">
@@ -91,18 +111,23 @@ const InnerForm = ({ values, handleChange, handleSubmit, setValues, initialData 
                       Auto-fill with Existing Data
                     </label>
                     <Field className="app-form-control readonly-field" placeholder="NAME" name="name" readOnly />
-                    <Field className="app-form-control readonly-field" placeholder="Roll_no" name="_id" readOnly />
+                    <Field className="app-form-control readonly-field" placeholder="Father's Name" name="fathers_name" readOnly />
+                    <Field className="app-form-control readonly-field" placeholder="Roll no" name="_id" readOnly />
                     <Field className="app-form-control readonly-field" placeholder="Email" name="email" type="email" readOnly />
-                    <Field className="app-form-control" placeholder="Phone no" name="phone"/>
-                    <Field className="app-form-control readonly-field" placeholder="Semester" name="semester" readOnly />
-                    <Field className="app-form-control readonly-field" placeholder="CGPA" name="cgpa" readOnly />
-                    <Field className="app-form-control" placeholder="Skills (comma separated)" name="skills" />
-                    <Field className="app-form-control" placeholder="Personal Website" name="portfolio" />
-                    <Field className="app-form-control" placeholder="10th Education" name="education10" />
-                    <Field className="app-form-control" placeholder="12th Education" name="education12" />
-                    <Field className="app-form-control" placeholder="About" name="about" />
+                    <Field className="app-form-control" placeholder="Phone no" name="phone" onChange={handleFieldChange} />
+                    <Field className="app-form-control readonly-field" placeholder="Batch" name="batch" readOnly />
+                    <Field className="app-form-control readonly-field" placeholder="CGPA" name="cgpi" readOnly />
+                    <Field className="app-form-control readonly-field" placeholder="Class Rank" name="class_rank" readOnly />
+                    <Field className="app-form-control readonly-field" placeholder="Branch Rank" name="branch_rank" readOnly />
+                    <Field className="app-form-control readonly-field" placeholder="Year Rank" name="year_rank" readOnly />
+                    <Field className="app-form-control" placeholder="Skills (comma separated)" name="skills" onChange={handleFieldChange} />
+                    <Field className="app-form-control" placeholder="Personal Website" name="portfolio" onChange={handleFieldChange} />
+                    <Field className="app-form-control" placeholder="10th Education" name="education10" onChange={handleFieldChange} />
+                    <Field className="app-form-control" placeholder="12th Education" name="education12" onChange={handleFieldChange} />
+                    <Field className="app-form-control" placeholder="About" name="about" onChange={handleFieldChange} />
+                    <Field className="app-form-control" placeholder="Address" name="address" onChange={handleFieldChange} />
                     <div className="app-form-group buttons">
-                      <button className="app-form-button" type="submit">Submit</button>
+                      <button className={`app-form-button ${!isFormValid ? 'disabled' : ''}`} type="submit" disabled={!isFormValid}>Submit</button>
                     </div>
                   </div>
                 </div>
@@ -119,10 +144,6 @@ const MyForm = withFormik({
   mapPropsToValues: ({ initialData }) => ({
     ...initialData,
   }),
-  validate: (values) => {
-    const errors = {};
-    return errors;
-  },
   handleSubmit: async (values, { props }) => {
     const processedValues = {
       ...values,

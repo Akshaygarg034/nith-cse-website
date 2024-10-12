@@ -6,6 +6,7 @@ import ScrollToTop from "react-scroll-to-top";
 import { useSession } from 'next-auth/react'
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
+import Footer from '../components/Footer'
 
 function About() {
     const scrollStyle = {
@@ -41,7 +42,7 @@ function About() {
                 <Login_></Login_>
                 <div className={styles.studentHeader}>
                     <Image
-                        src="https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225604/nith-cse-website/wnakm4202ka5fguovvzn.jpg"
+                        src="https://res.cloudinary.com/dz1vsgxm5/image/upload/nith-cse-website/j4ulev7i0qe5offuvcyu.jpg"
                         className="fullPagePics"
                         alt=""
                         sizes='100vw'
@@ -78,12 +79,13 @@ function About() {
                     </div>
                 </div>
 
-                <section className={styles.messageSection} style={{paddingTop:'2%'}}>
+                <section className={styles.messageSection} style={{ padding: '2% 0' }}>
                     <div className={styles.message}>
 
                         <p><img src="https://www.iima.ac.in/themes/iima/images/qoute-1.svg" alt="comma" />The aim of these programmes is to enable students to acquire specialized knowledge for various subjects in computer science & information technology, as well as to enrich the students personal, social and cognitive development to meet challenges of today and tomorrow. The Department is well equipped with high end computers, latest software & state-of-the-art IT infrastructure and all these computing resources are inter-connected with high speed intranet. Our students are exposed to up-to-date curriculum, technology and techniques. The Department has well experienced & dedicated faculty members with different specializations. Our curriculum is modified, enhanced and updated regularly as we introduce new courses to reflect current topics in this fast-changing discipline. Our faculty is involved in cutting-edge research areas, including computer networks, mobile computing, mobile ad hoc networks, wireless sensor networks, security, image processing, data mining, artificial intelligence, computer architecture and reconfigurable computing. The Department prides itself on good career opportunities for students. Our students graduate with more than 100% placement through campus. Many companies of repute show their interest to visit our Institute for campus recruitment.<img className={styles.img2} src="https://www.iima.ac.in/themes/iima/images/qoute-2.svg" alt="comma" /></p>
                     </div>
                 </section>
+                <Footer />
             </section>
         </>
     )

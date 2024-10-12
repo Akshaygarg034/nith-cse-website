@@ -1,4 +1,4 @@
-import Loader from '@/components/Loader';
+import Loader from '@/components/Preloader';
 import Head from 'next/head'
 import '@/styles/globals.css'
 import { useState, useEffect } from 'react';

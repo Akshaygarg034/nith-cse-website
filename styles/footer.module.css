@@ -68,7 +68,8 @@
 .icons {
     font-size: 22px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 2em;
     width: 27%;
     margin: 7% auto;
 }
@@ -84,8 +85,29 @@
 .copyright {
     text-align: center;
     font-size: 18px;
-    margin-top: -4.5%;
     font-family: 'Noto Sans', sans-serif;
+}
+
+.madeWithLove {
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.myName{
+    cursor: pointer;
+    color: rgb(156, 224, 250);
+    text-decoration: none;
+}
+
+.myName:hover{
+    color: rgb(51, 197, 255);
+}
+
+@media (min-width: 1000px) {
+    .madeWithLove{
+        margin-top: -2em;
+    }
 }
 
 @media (max-width: 630px) {

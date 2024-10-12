@@ -14,22 +14,23 @@ function UserCard({ user }) {
                 <div className='card-text'>
                     <p className="user_name">{user.name}</p>
                     <p className="skill">{user._id}</p>
+                    <p className="skill"><strong>CGPA : </strong>{user.cgpi}</p>
                 </div>
                 <div className="arr_container center" onClick={() => setDetailActive(true)} >
                     <FaIcons.FaArrowRight className="fas" />
                 </div>
                 <div className={detailActive ? "left_container active" : "left_container off"}>
                     <div className="left_container_data">
-                        <p>Skills</p>
+                        <p>Ranks</p>
                         <div className="skills">
-                            {user.skills.slice(0,3).map((skill, index) => {
-                                return <div key={index}>{skill}</div>
-                            })}
+                            <div>Class #{user.class_rank}</div>
+                            <div>Branch #{user.branch_rank}</div>
+                            <div>Year #{user.year_rank}</div>
                         </div>
                         <div className="icons">
-                            <a href={user.github} target="_blank" className="fab"><FaIcons.FaGithub />
+                            <a href={user.github === "" ? "#" : user.github} target="_blank" className="fab"><FaIcons.FaGithub />
                             </a>
-                            <a href={user.linkedin} target="_blank" className="fab"><FaIcons.FaLinkedin />
+                            <a href={user.linkedin === "" ? "#" : user.linkedin} target="_blank" className="fab"><FaIcons.FaLinkedin />
                             </a>
                         </div>
                         <div className='findMore'><Link href={`student/${user._id}`}>Find More <AiOutlineRight /></Link></div>

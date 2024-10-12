@@ -4,6 +4,10 @@ const path = require('path');
 const { connectToMongo, closeMongoConnection } = require('../db/mongoClient');
 require('dotenv').config();
 
+const toTitleCase = (str) => {
+  return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+};
+
 const scrapeStudents = async () => {
   const url = process.env.STUDENTS_SCRAPE_URL;
 
@@ -26,48 +30,50 @@ const scrapeStudents = async () => {
     console.log('Existing data fetched from MongoDB:', existingData.length);
 
     // Transform the data into the desired format and merge with existing data
-    const transformedData = filteredData.map(student => {
-      const existingStudent = existingData.find(existing => existing._id === student.roll_number);
+    const transformedData = filteredData.map((student, index) => {
+      const existingStudent = existingData.find(existing => existing._id === student.roll_number.toLowerCase());
+      const defaultEmail = `${student.roll_number.toLowerCase()}@nith.ac.in`;
 
       return {
-        _id: student.roll_number,
-        name: student.name,
-        fathers_name: student.fathers_name,
-        semester: existingStudent ? existingStudent.semester : "Not added",
-        cgpi: student.cgpi.toString(),
+        _id: student.roll_number.toLowerCase(),
+        name: toTitleCase(student.name),
+        fathers_name: toTitleCase(student.fathers_name),
+        batch: student.batch,
+        cgpi: student.cgpi,
         branch_rank: student.branch_rank,
         year_rank: student.year_rank,
         class_rank: student.class_rank,
         image: existingStudent ? existingStudent.image : "https://res.cloudinary.com/dz1vsgxm5/image/upload/nith-cse-website/fykmv1tsesa1bdvpldfa.jpg",
-        about: existingStudent ? existingStudent.about : "Not added",
-        education10: existingStudent ? existingStudent.education10 : "Not added",
-        education12: existingStudent ? existingStudent.education12 : "Not added",
-        email: existingStudent ? existingStudent.email : "Not added",
-        phone: existingStudent ? existingStudent.phone : "Not added",
-        github: existingStudent ? existingStudent.github : "Not added",
-        linkedin: existingStudent ? existingStudent.linkedin : "Not added",
-        portfolio: existingStudent ? existingStudent.portfolio : "Not added",
-        address: existingStudent ? existingStudent.address : "Not added",
-        skills: existingStudent ? existingStudent.skills : ["Not added"]
+        about: existingStudent ? existingStudent.about : "",
+        education10: existingStudent ? existingStudent.education10 : "",
+        education12: existingStudent ? existingStudent.education12 : "",
+        email: existingStudent ? existingStudent.email : defaultEmail,
+        phone: existingStudent ? existingStudent.phone : "",
+        github: existingStudent ? existingStudent.github : "",
+        linkedin: existingStudent ? existingStudent.linkedin : "",
+        portfolio: existingStudent ? existingStudent.portfolio : "",
+        address: existingStudent ? existingStudent.address : "",
+        skills: existingStudent ? existingStudent.skills : [""],
+        order: index // Add order field
       };
     });
 
-    // Sort the transformed data by _id in ascending order
-    transformedData.sort((a, b) => a._id.localeCompare(b._id));
+    // Sort the transformed data by cgpi in decreasing order
+    transformedData.sort((a, b) => b.cgpi - a.cgpi);
 
-    // Save the transformed data to a local file
-    const localFilePath = path.resolve(__dirname, 'transformed_students.json');
-    fs.writeFileSync(localFilePath, JSON.stringify(transformedData, null, 2));
-    console.log('Transformed JSON data saved successfully.');
+    // // Save the transformed data to a local file
+    // const localFilePath = path.resolve(__dirname, 'transformed_students.json');
+    // fs.writeFileSync(localFilePath, JSON.stringify(transformedData, null, 2));
+    // console.log('Transformed JSON data saved successfully.');
 
-    // Update MongoDB with the transformed data
-    await Promise.all(transformedData.map(async student => {
+    // Update MongoDB with the transformed data sequentially
+    for (const student of transformedData) {
       await collection.updateOne(
         { _id: student._id },
         { $set: student },
         { upsert: true }
       );
-    }));
+    }
 
     console.log('MongoDB updated successfully.');
 

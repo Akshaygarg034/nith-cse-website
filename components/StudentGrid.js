@@ -26,7 +26,7 @@ function StudentGrid() {
                                 </Fade>
                             </div>
                         </div>
-                        <div className={styles.box5} style={{background:"url(https://res.cloudinary.com/dz1vsgxm5/image/upload/v1716225342/nith-cse-website/sauvlvzupuygkzsqr9pf.png)"}}>
+                        <div className={styles.box5} style={{background:"url(https://res.cloudinary.com/dz1vsgxm5/image/upload/nith-cse-website/mfcv3gcaakc0ipfl3cpn.jpg)"}}>
                             <div className={styles.overlay} style={{ bottom: '1.8%' }}></div>
                             <Fade bottom>
                                 <h1>Video Heading</h1>

@@ -21,6 +21,22 @@ body {
   overflow-x: hidden;
 }
 
+.loaderBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid lightblue;
+  border-right-color: orange;
+  animation: l2 1s infinite linear;
+}
+@keyframes l2 {to{transform: rotate(1turn)}}
+
 #avatar {
   position: absolute;
   top: 2%;
@@ -125,8 +141,9 @@ body {
 }
 
 .box {
-  width: auto;
-  height: auto;
+  width: 275px;
+  height: 275px;
+  padding: 0 1% !important;
   min-height: 275px;
   min-width: 275px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.288);
@@ -151,7 +168,7 @@ body {
 
 .user_name {
   margin-bottom: 16px;
-  font-size: 2rem;
+  font-size: 1.7rem;
   margin-top: 5%;
 }
 
@@ -310,6 +327,11 @@ body {
   color: #1bc25b;
   margin-top: 100px;
   font-size: 26px;
+}
+
+.disabled{
+  opacity: 0.9;
+  cursor: not-allowed !important;
 }
 
 .mainForm {
