@@ -9,7 +9,7 @@ const scrapeFaculties = async () => {
     const page = await browser.newPage();
 
     // Navigate to the website
-    await page.goto('https://nith.ac.in/computer-science-engineering', { waitUntil: 'networkidle2', timeout: 120000 });
+    await page.goto(process.env.FACULTIES_SCRAPE_URL, { waitUntil: 'networkidle2', timeout: 120000 });
 
     // Wait for the table to load
     await page.waitForSelector('.table.table-bordered.mytabnum');
@@ -20,6 +20,7 @@ const scrapeFaculties = async () => {
       const rows = Array.from(table.querySelectorAll('tbody tr'));
       const data = [];
       let currentRole = 'Professor';
+      let order = 0;
 
       rows.forEach(row => {
         if (row.classList.contains('thcolor')) {
@@ -37,14 +38,15 @@ const scrapeFaculties = async () => {
           const areas = cells[2].innerText.trim().split(',').map(area => area.trim());
           const linkElement = cells[4].querySelector('a');
           const findMore = linkElement ? linkElement.href : '';
-          const img = ''; // Placeholder for image URL
+          const img = '';
 
           data.push({
             name,
             role: currentRole,
             img,
             areas,
-            findMore
+            findMore,
+            order: order++
           });
         }
       });
@@ -79,13 +81,15 @@ const scrapeFaculties = async () => {
           if (entry.name === 'Dr. Pardeep Singh') {
             entry.img = 'https://portfolios.nith.ac.in/uploads/member_details/65.jpg';
             console.log(`Corrected image URL for ${entry.name} !!!`);
-          }
-          else{
+          } else {
             console.error(`Error processing entry for ${entry.name}:`, error);
           }
         }
       }
     }));
+
+    // Print final table data
+    console.log('Final table data:', tableData);
 
     // Connect to MongoDB
     const db = await connectToMongo();

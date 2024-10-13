@@ -11,9 +11,9 @@ process.env.TZ = 'Asia/Kolkata';
 // Create an Express application
 const app = express();
 
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.status(200).send('Server is active and running!');
+// API Health check endpoint
+app.get('/', (req, res) => {
+  res.status(200).send('Server is active and running!'); 
 });
 
 // Start the Express server

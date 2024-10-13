@@ -4,6 +4,7 @@
   "description": "For scraping latest upcoming events and updated faculty details",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Akshay Garg",
@@ -14,6 +15,6 @@
     "express": "^4.21.0",
     "mongodb": "^6.9.0",
     "node-cron": "^3.0.3",
-    "puppeteer": "^23.5.0"
+    "puppeteer": "^23.5.0"  
   }
 }

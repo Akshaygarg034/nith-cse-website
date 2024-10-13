@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../styles/footer.module.css';
-import { SlSocialFacebook, SlSocialInstagram, SlSocialTwitter, SlSocialLinkedin, SlSocialYoutube } from 'react-icons/sl'
+import { SlSocialFacebook, SlSocialTwitter, SlSocialLinkedin } from 'react-icons/sl'
+import { FaGithub } from "react-icons/fa";
 
 function Footer() {
     const currentYear = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata', year: 'numeric' });
@@ -40,6 +41,7 @@ function Footer() {
                 <div className={styles.icons} style={{ fontSize: '25px' }}>
                     <a href='https://www.facebook.com/Official.NITHamirpur' target='_blank'><SlSocialFacebook /></a>
                     <a href='https://twitter.com/nithamirpurhp' target='_blank'><SlSocialTwitter /></a>
+                    <a href='https://github.com/Akshaygarg034/nith-cse-website' target='_blank'><FaGithub /></a>
                     <a href='https://www.linkedin.com/m/in/nithamirpur-hamirpur-4688551b9' target='_blank'><SlSocialLinkedin /></a>
                 </div>
                 <p className={styles.madeWithLove}>

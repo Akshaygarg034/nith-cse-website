@@ -96,12 +96,12 @@
 
 .myName{
     cursor: pointer;
-    color: rgb(156, 224, 250);
+    color: #B9D9EB;
     text-decoration: none;
 }
 
 .myName:hover{
-    color: rgb(51, 197, 255);
+    color: #87CEFA;
 }
 
 @media (min-width: 1000px) {
