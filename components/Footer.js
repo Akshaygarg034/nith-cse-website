@@ -42,7 +42,7 @@ function Footer() {
                     <a href='https://www.facebook.com/Official.NITHamirpur' target='_blank'><SlSocialFacebook /></a>
                     <a href='https://twitter.com/nithamirpurhp' target='_blank'><SlSocialTwitter /></a>
                     <a href='https://github.com/Akshaygarg034/nith-cse-website' target='_blank'><FaGithub /></a>
-                    <a href='https://www.linkedin.com/m/in/nithamirpur-hamirpur-4688551b9' target='_blank'><SlSocialLinkedin /></a>
+                    <a href='https://www.linkedin.com/company/department-of-computer-science-and-engineering-nit-hamirpur' target='_blank'><SlSocialLinkedin /></a>
                 </div>
                 <p className={styles.madeWithLove}>
                    Made with <span style={{ color: 'red' }}>❤️</span> by <a href='https://akshay-garg-portfolio.vercel.app/' target='_blank' className={styles.myName}>Akshay Garg</a>

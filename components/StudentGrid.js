@@ -11,26 +11,26 @@ function StudentGrid() {
                         <div className={styles.box3}>
                             <div className={styles.inner3}>
                                 <Fade bottom>
-                                    <h1>Campus Facility</h1>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos ipsum, accusamus rerum eligendi totam fuga.</p>
+                                    <h1>Alumni Network</h1>
+                                    <p>Connect with a strong network of successful alumni who share their experiences and provide valuable insights into career paths and opportunities.</p>
                                 </Fade>
                             </div>
-                            <div className={styles.inner4}></div>
+                            <div className={styles.inner4} style={{ background: "url(https://media.licdn.com/dms/image/v2/D5622AQHgafCIbUbEbQ/feedshare-shrink_1280/feedshare-shrink_1280/0/1719053960039?e=1731542400&v=beta&t=KGC4Lo0lo6pymc82_7_ksya7JpHFGbZCKVk5-nrH8fw)" }}></div>
                         </div>
                         <div className={styles.box4}>
-                            <div className={styles.inner5}></div>
+                            <div className={styles.inner5} style={{ background: "url(https://res.cloudinary.com/dz1vsgxm5/image/upload/nith-cse-website/gxyimovoo9qkxdb1znpc.jpg)" }}></div>
                             <div className={styles.inner6}>
                                 <Fade bottom>
-                                    <h1>Suistainable initiatives</h1>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis dignissimos aspernatur ad beatae quam est.</p>
+                                    <h1>Coding Competitions</h1>
+                                    <p>Participate in various coding competitions and hackathons that challenge your skills and encourage teamwork, creativity, and problem-solving.</p>
                                 </Fade>
                             </div>
                         </div>
-                        <div className={styles.box5} style={{background:"url(https://res.cloudinary.com/dz1vsgxm5/image/upload/nith-cse-website/mfcv3gcaakc0ipfl3cpn.jpg)"}}>
-                            <div className={styles.overlay} style={{ bottom: '1.8%' }}></div>
+                        <div className={styles.box5} style={{ background: "url(https://media.licdn.com/dms/image/v2/D5622AQHICPkHO25OUA/feedshare-shrink_1280/feedshare-shrink_1280/0/1727623085852?e=1731542400&v=beta&t=XIarUG5U3ib5tHLM-LrES-R1TQCpgpAPrHqQWaNkR4I)" }}>
+                            <div className={styles.overlay} style={{ bottom: '1.8%', backgroundColor: 'rgba(0, 0, 0, 0.4)' }}></div>
                             <Fade bottom>
-                                <h1>Video Heading</h1>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam nam cumque nulla optio ducimus dignissimos</p>
+                                <h1>Internship and Placement Support</h1>
+                                <p>Benefit from dedicated support for internships and placements, connecting students with industry leaders and enhancing career prospects.</p>
                             </Fade>
                         </div>
                     </div>

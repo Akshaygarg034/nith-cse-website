@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react'
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import Footer from '../components/Footer'
+import { TiArrowRightThick } from "react-icons/ti";
 
 function About() {
     const scrollStyle = {
@@ -70,11 +71,11 @@ function About() {
                             <h1 style={{ marginLeft: '-1%' }}>Academic Programmes</h1>
                         </div>
                         <div className={styles.data}>
-                            <p>B.Tech. in Computer Science & Engineering (Four Years)</p>
-                            <p>Dual Degree in Computer Science & Engineering [B.Tech. + M.Tech.] (Five Years)</p>
-                            <p>M.Tech. in Computer Science & Engineering (Two Years)</p>
-                            <p>M.Tech. in Mobile Computing (Two Years)</p>
-                            <p>Ph.D. in Computer Science & Engineering</p>
+                            <p><span><TiArrowRightThick /></span> B.Tech. in Computer Science & Engineering (Four Years)</p>
+                            <p><span><TiArrowRightThick /></span> Dual Degree in Computer Science & Engineering [B.Tech. + M.Tech.] (Five Years)</p>
+                            <p><span><TiArrowRightThick /></span> M.Tech. in Computer Science & Engineering (Two Years)</p>
+                            <p><span><TiArrowRightThick /></span> M.Tech. in Computer Science & Engineering (Artificial Intelligence) (Two Years)</p>
+                            <p><span><TiArrowRightThick /></span> Ph.D. in Computer Science & Engineering</p>
                         </div>
                     </div>
                 </div>
