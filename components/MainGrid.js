@@ -52,7 +52,7 @@ function MainGrid() {
                         </div>
                         <div className={styles.box5}>
                             <div className={styles.overlay} style={{ bottom: '1.8%', backgroundColor: 'rgba(0, 0, 0, 0.2)' }}></div>
-                            <video src="https://res.cloudinary.com/dz1vsgxm5/video/upload/v1716225401/nith-cse-website/czpfjitkjmsqiotte3bh.mp4" autoPlay loop muted className={styles.boxVideo} />
+                            <video src="https://res.cloudinary.com/dz1vsgxm5/video/upload/v1716225403/nith-cse-website/ancjkzr6jxboae1c60l9.mp4" autoPlay loop muted className={styles.boxVideo} />
                             <Fade bottom>
                                 <h1>Driving Innovation</h1>
                                 <p>Through events like Nimbus and active technical clubs, the CSE Department at NIT Hamirpur drives innovation and excellence in cutting-edge technologies.</p>
