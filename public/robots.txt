@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://nith-cse.vercel.app
+
+# Sitemaps
+Sitemap: https://nith-cse.vercel.app/sitemap.xml
