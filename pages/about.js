@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image';
-import Navbar from '../components/Navbar'
 import styles from '../styles/student_faculty.module.css'
 import ScrollToTop from "react-scroll-to-top";
 import { useSession } from 'next-auth/react'
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
-import Footer from '../components/Footer'
 import { TiArrowRightThick } from "react-icons/ti";
+import dynamic from 'next/dynamic';
+const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
+const Footer = dynamic(() => import('../components/Footer'), { ssr: false });
 
 function About() {
     const scrollStyle = {

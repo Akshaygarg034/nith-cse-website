@@ -1,15 +1,17 @@
 import Head from 'next/head'
 import Image from 'next/image';
-import Navbar from '../components/Navbar'
 import styles from '../styles/student_faculty.module.css'
 import ScrollToTop from "react-scroll-to-top";
-import FacultyCard from '../components/facultycard'
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react'
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import Loader from '../components/Loader'
-import Footer from '../components/Footer'
+import dynamic from 'next/dynamic';
+
+const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
+const FacultyCard = dynamic(() => import('../components/facultycard'), { ssr: false });
+const Footer = dynamic(() => import('../components/Footer'), { ssr: false });
 
 function faculty() {
     const { data: session, status } = useSession()
@@ -55,7 +57,7 @@ function faculty() {
                 <meta name="description" content="Meet the faculty members of the Computer Science Department at NIT Hamirpur." />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="canonical" href="https://nith-cse.vercel.app/faculty" />
-                <link rel="icon" href="/logo.png" />
+                <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" />
                 {/* JSON-LD for structured data */}
                 <script
                     type="application/ld+json"

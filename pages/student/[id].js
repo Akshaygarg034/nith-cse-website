@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Navbar from '../../components/Navbar'
 import Image from 'next/image';
 import { Image as AntdImage } from 'antd';
 import styles from '../../styles/student_faculty.module.css'
@@ -12,7 +11,10 @@ import { Button } from 'antd';
 import { useRouter } from 'next/router';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
+import dynamic from 'next/dynamic';
 import { signIn, useSession } from "next-auth/react";
+
+const Navbar = dynamic(() => import('../../components/Navbar'), { ssr: false });
 
 function IdPage() {
     const [data, setData] = useState(null);
@@ -80,7 +82,7 @@ function IdPage() {
                     <title>Students - NITH CSE</title>
                     <meta name="description" content="Student's Portfolio page" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <link rel="icon" href="/logo.png" />
+                    <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" />
                 </Head>
                 <ScrollToTop smooth='true' width={30} height={30} style={scrollStyle} />
                 <section className={styles.facultyDetails}>

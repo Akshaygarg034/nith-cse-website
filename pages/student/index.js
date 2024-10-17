@@ -1,19 +1,22 @@
 import Head from 'next/head'
 import Image from 'next/image';
-import Navbar from '../../components/Navbar'
 import styles from '../../styles/student_faculty.module.css'
 import ScrollToTop from "react-scroll-to-top";
-import UserCard from '@/components/usercard'
-import StudentGrid from '@/components/StudentGrid';
 import { useEffect, useState, useRef, useCallback } from 'react';
-import SearchBar from '@/components/SearchBar';
 import { useSession } from 'next-auth/react'
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import Fade from 'react-reveal/Fade';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from '../../components/Loader'
-import Footer from '../../components/Footer'
+import dynamic from 'next/dynamic';
+
+const UserCard = dynamic(() => import('@/components/usercard'), { ssr: false });
+const StudentGrid = dynamic(() => import('@/components/StudentGrid'), { ssr: false });
+const SearchBar = dynamic(() => import('@/components/SearchBar'), { ssr: false });
+const Navbar = dynamic(() => import('../../components/Navbar'), { ssr: false });
+const Footer = dynamic(() => import('../../components/Footer'), { ssr: false });
+
 
 function student() {
     const { data: session, status } = useSession()
@@ -91,7 +94,7 @@ function student() {
                 <meta name="description" content="Find student resources, academic guides, and achievements from the Computer Science Department." />
                 <link rel="canonical" href="https://nith-cse.vercel.app/student" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/logo.png" />
+                <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" />
                 {/* JSON-LD for structured data */}
                 <script
                     type="application/ld+json"
