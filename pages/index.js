@@ -76,7 +76,7 @@ const Home = () => {
               "description": "An introduction to the Computer Science Department of NIT Hamirpur.",
               "thumbnailUrl": "https://res.cloudinary.com/dz1vsgxm5/image/upload/Portfolio/ovhdvxa9hqx7tl0ray5p.jpg",
               "uploadDate": "2024-10-01T08:00:00+08:00",
-              "contentUrl": "https://res.cloudinary.com/dz1vsgxm5/video/upload/v1716225403/nith-cse-website/kkgeccdwvo1rvxvbiwmt.mp4",
+              "contentUrl": "https://res.cloudinary.com/dz1vsgxm5/video/upload/v1729336941/nith-cse-website/bidaegjvqeggbtqp9xea.mp4",
               "embedUrl": "https://nith-cse.vercel.app",
               "duration": "PT1M33S",
               "publisher": {
