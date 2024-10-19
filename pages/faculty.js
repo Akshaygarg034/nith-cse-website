@@ -54,10 +54,10 @@ function faculty() {
         <>
             <Head>
                 <title>Faculty - NITH CSE</title>
-                <meta name="description" content="Meet the faculty members of the Computer Science Department at NIT Hamirpur." />
+                <meta name="description" content="Meet the faculty members of the Computer Science and Engineering Department at NIT Hamirpur (NITH CSE)" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="canonical" href="https://nith-cse.vercel.app/faculty" />
-                <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" />
+                <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" type="image/png" />
                 {/* JSON-LD for structured data */}
                 <script
                     type="application/ld+json"
@@ -66,7 +66,7 @@ function faculty() {
                             "@context": "https://schema.org",
                             "@type": "WebPage",
                             "url": "https://nith-cse.vercel.app/faculty",
-                            "name": "Faculty Members - NIT Hamirpur CSE Department",
+                            "name": "Faculty Members - NIT Hamirpur Computer Science and Engineering Department (NITH CSE)",
                             "description": "Meet the faculty members of NIT Hamirpur’s Computer Science Department, their research areas, and contact details."
                         }),
                     }}

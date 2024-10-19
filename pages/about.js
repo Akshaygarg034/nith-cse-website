@@ -33,10 +33,10 @@ function About() {
         <>
             <Head>
                 <title>About - NITH CSE</title>
-                <meta name="description" content="Learn about the Computer Science Department at NIT Hamirpur, its vision, mission, and academic goals." />
+                <meta name="description" content="Learn about the Computer Science and Engineering Department at NIT Hamirpur (NITH CSE), its vision, mission, and academic goals." />
                 <link rel="canonical" href="https://nith-cse.vercel.app/about" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" />
+                <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" type="image/png" />
 
                 {/* JSON-LD for structured data */}
                 <script

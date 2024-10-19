@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <meta name="google-site-verification" content="EcgB5b4stpvGlTDJE3xjdzpN9SLIxgGFcUAsE3PWdTw" />
-        <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" />
+        <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" type="image/png" />
       </Head>
       <body>
         <Main />

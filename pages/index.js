@@ -27,23 +27,23 @@ const Home = () => {
     <div style={mainStyle}>
       <Head>
         <title>NITH CSE WEBSITE</title>
-        <meta name="description" content="Welcome to the Computer Science Department of NIT Hamirpur. Find faculty details, student information, academic programs, and more." />
+        <meta name="description" content="Welcome to the Computer Science and Engineering Department of NIT Hamirpur (NITH CSE). Discover CSE@NITH, find faculty details, student information, academic programs, research opportunities, and more." />
         <link rel="canonical" href="https://nith-cse.vercel.app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="keywords" content="NIT Hamirpur, CSE, Computer Science and Engineering, CSE Department, National Institute of Technology, Hamirpur, Akshay Garg" />
-        <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" />
+        <meta name="keywords" content="NIT Hamirpur, CSE, NITH, Computer Science and Engineering, CSE@NITH, CSE Department, National Institute of Technology, Hamirpur, Akshay Garg" />
+        <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" type="image/png" />
 
         {/* Open Graph Tags */}
-        <meta property="og:title" content="NITH CSE" />
-        <meta property="og:description" content="Welcome to the Computer Science Department of NIT Hamirpur. Find faculty details, student information, academic programs, and more." />
+        <meta property="og:title" content="NITH CSE WEBSITE" />
+        <meta property="og:description" content="Welcome to the Computer Science and Engineering Department of NIT Hamirpur (NITH CSE). Find faculty details, student information, academic programs, and more." />
         <meta property="og:url" content="https://nith-cse.vercel.app" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://thumbsnap.com/i/CZmvhUcX.png" />
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="NITH CSE" />
-        <meta name="twitter:description" content="Welcome to the Computer Science Department of NIT Hamirpur. Find faculty details, student information, academic programs, and more." />
+        <meta name="twitter:title" content="NITH CSE WEBSITE" />
+        <meta name="twitter:description" content="Welcome to the Computer Science and Engineering Department of NIT Hamirpur (NITH CSE). Find faculty details, student information, academic programs, and more." />
         <meta name="twitter:image" content="https://thumbsnap.com/i/CZmvhUcX.png" />
 
         {/* JSON-LD for structured data */}
@@ -53,7 +53,7 @@ const Home = () => {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "NIT Hamirpur - CSE Department",
+              "name": "NIT Hamirpur - Computer Science and Engineering Department (NITH CSE)",
               "url": "https://nith-cse.vercel.app",
               "logo": "https://thumbsnap.com/i/CZmvhUcX.png",
               "sameAs": [
@@ -72,7 +72,7 @@ const Home = () => {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "VideoObject",
-              "name": "NITH CSE Department",
+              "name": "NIT Hamirpur - Computer Science and Engineering Department (NITH CSE)",
               "description": "An introduction to the Computer Science Department of NIT Hamirpur.",
               "thumbnailUrl": "https://res.cloudinary.com/dz1vsgxm5/image/upload/Portfolio/ovhdvxa9hqx7tl0ray5p.jpg",
               "uploadDate": "2024-10-01T08:00:00+08:00",
