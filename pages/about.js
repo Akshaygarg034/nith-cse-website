@@ -55,8 +55,9 @@ function About() {
 
             <ScrollToTop smooth='true' width={30} height={30} style={scrollStyle} />
 
+            <Navbar />
+            <Login_></Login_>
             <section className='about'>
-                <Login_></Login_>
                 <div className={styles.studentHeader}>
                     <Image
                         src="https://res.cloudinary.com/dz1vsgxm5/image/upload/nith-cse-website/j4ulev7i0qe5offuvcyu.jpg"
@@ -67,7 +68,6 @@ function About() {
                         width="0"
                     />
                     <div className={styles.overlay}></div>
-                    <Navbar />
                     <div className={styles.headerText} style={{ height: '100%' }}>
                         <h1>Computer Science and Engineering</h1>
                     </div>
