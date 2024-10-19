@@ -7,7 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import { TiArrowRightThick } from "react-icons/ti";
 import dynamic from 'next/dynamic';
-const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
+import Navbar from '../components/Navbar'
 const Footer = dynamic(() => import('../components/Footer'), { ssr: false });
 
 function About() {
