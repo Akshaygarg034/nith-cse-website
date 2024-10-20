@@ -91,10 +91,10 @@ function student() {
         <>
             <Head>
                 <title>Students - NITH CSE</title>
+                <link rel="icon" href="/favicon.png" type="image/png" />
                 <meta name="description" content="Find student resources, academic guides, and achievements from the Computer Science and Engineering Department of NIT Hamirpur (NITH CSE)." />
                 <link rel="canonical" href="https://nith-cse.vercel.app/student" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" type="image/png" />
                 {/* JSON-LD for structured data */}
                 <script
                     type="application/ld+json"

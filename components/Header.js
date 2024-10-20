@@ -23,7 +23,7 @@ function Header() {
       <div className={styles.header}>
         <div className={styles.overlay}></div>
 
-        <video src="https://res.cloudinary.com/dz1vsgxm5/video/upload/v1729336941/nith-cse-website/bidaegjvqeggbtqp9xea.mp4" autoPlay loop muted className={styles.bgVideo} loading="lazy" preload="metadata" playsinline/>
+        <video src="https://res.cloudinary.com/dz1vsgxm5/video/upload/v1729336941/nith-cse-website/bidaegjvqeggbtqp9xea.mp4" autoPlay loop muted className={styles.bgVideo} loading="lazy" preload="metadata" playsInline/>
         <Navbar />
         <div className={styles.content}>
 

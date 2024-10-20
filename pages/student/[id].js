@@ -80,9 +80,9 @@ function IdPage() {
             return <>
                 <Head>
                     <title>Students - NITH CSE</title>
+                    <link rel="icon" href="/favicon.png" type="image/png" />
                     <meta name="description" content="Student's Portfolio page of Computer Science and Engineering Department of NIT Hamirpur (NITH CSE)" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" type="image/png" />
                 </Head>
                 <ScrollToTop smooth='true' width={30} height={30} style={scrollStyle} />
                 <section className={styles.facultyDetails}>

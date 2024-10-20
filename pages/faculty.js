@@ -54,10 +54,10 @@ function faculty() {
         <>
             <Head>
                 <title>Faculty - NITH CSE</title>
+                <link rel="icon" href="/favicon.png" type="image/png" />
                 <meta name="description" content="Meet the faculty members of the Computer Science and Engineering Department at NIT Hamirpur (NITH CSE)" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="canonical" href="https://nith-cse.vercel.app/faculty" />
-                <link rel="icon" href="https://thumbsnap.com/i/CZmvhUcX.png" type="image/png" />
                 {/* JSON-LD for structured data */}
                 <script
                     type="application/ld+json"
