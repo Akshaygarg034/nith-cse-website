@@ -21,10 +21,6 @@ const processSkills = (skills) => {
   return skills;
 };
 
-const truncateFileName = (fileName) => {
-  return fileName.length > 12 ? fileName.substring(0, 12) + '...' : fileName;
-};
-
 const InnerForm = ({ values, handleChange, handleSubmit, setValues, initialData }) => {
   const router = useRouter();
   const [useExistingData, setUseExistingData] = useState(false);
@@ -113,7 +109,7 @@ const InnerForm = ({ values, handleChange, handleSubmit, setValues, initialData 
         validateForm({ ...values, image: imageUrl });
 
         // Set truncated file name
-        setFileName(truncateFileName(file.name));
+        setFileName('Upload Another Image');
       } catch (error) {
         console.error('Error uploading file to Cloudinary:', error);
       } finally {
