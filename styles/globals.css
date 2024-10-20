@@ -320,18 +320,20 @@ body {
 }
 
 .upload_title {
-
+  cursor: pointer;
   display: flex;
+  gap: 10px;
   flex-direction: column;
   position: relative;
   color: #1bc25b;
   margin-top: 100px;
-  font-size: 26px;
+  font-size: 18px;
 }
 
 .disabled{
-  opacity: 0.9;
+  opacity: 0.5;
   cursor: not-allowed !important;
+  color: #fff !important;
 }
 
 .mainForm {
@@ -476,6 +478,39 @@ input {
 .app-form-group.buttons {
   margin-bottom: 0;
   text-align: right;
+}
+
+.file-upload-wrapper {
+  position: relative !important;
+  overflow: hidden;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#file-upload{
+  cursor: pointer;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #ea1d6f;
+  color: white;
+  border-radius: 4px;
+}
+
+.file-input {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.app-form-control {
+  margin-top: 10px;
 }
 
 .autofill-label {

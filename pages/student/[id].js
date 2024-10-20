@@ -101,7 +101,7 @@ function IdPage() {
                         <Navbar />
                         <div className={styles.headerBox}>
                             <div className={styles.studentImage}>
-                                <AntdImage width={150} height={150} src={data.image} />
+                                <AntdImage width={150} height={150} src={data.image} style={{objectFit:'cover'}}/>
                             </div>
 
                             <div className={styles.headerText}>

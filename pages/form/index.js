@@ -21,10 +21,17 @@ const processSkills = (skills) => {
   return skills;
 };
 
+const truncateFileName = (fileName) => {
+  return fileName.length > 12 ? fileName.substring(0, 12) + '...' : fileName;
+};
+
 const InnerForm = ({ values, handleChange, handleSubmit, setValues, initialData }) => {
   const router = useRouter();
   const [useExistingData, setUseExistingData] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
+  const [imageUploaded, setImageUploaded] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [fileName, setFileName] = useState('Upload Profile Pic');
 
   useEffect(() => {
     document.body.style.backgroundColor = '#000';
@@ -34,35 +41,37 @@ const InnerForm = ({ values, handleChange, handleSubmit, setValues, initialData 
   }, []);
 
   useEffect(() => {
-    if (useExistingData) {
-      setValues(initialData);
-      validateForm(initialData);
-    } else {
-      const emptyValues = {
-        name: '',
-        fathers_name: '',
-        _id: '',
-        email: '',
-        phone: '',
-        batch: '',
-        cgpi: '',
-        class_rank: '',
-        branch_rank: '',
-        year_rank: '',
-        skills: '',
-        portfolio: '',
-        education10: '',
-        education12: '',
-        about: '',
-        address: '',
-        image: '',
-        github: '',
-        linkedin: ''
-      };
-      setValues(emptyValues);
-      validateForm(emptyValues);
+    const newValues = useExistingData ? { ...initialData, image: imageUploaded ? values.image : initialData.image } : {
+      name: '',
+      fathers_name: '',
+      _id: '',
+      email: '',
+      phone: '',
+      batch: '',
+      cgpi: '',
+      class_rank: '',
+      branch_rank: '',
+      year_rank: '',
+      skills: '',
+      portfolio: '',
+      education10: '',
+      education12: '',
+      about: '',
+      address: '',
+      image: values.image || '',
+      github: '',
+      linkedin: ''
+    };
+    setValues(newValues);
+    validateForm(newValues);
+
+    // Update file upload button text based on existing value
+    if (useExistingData && initialData.image) {
+      setFileName('Upload Another Image');
+    } else if (!useExistingData && !imageUploaded) {
+      setFileName('Upload Profile Image');
     }
-  }, [useExistingData, initialData, setValues]);
+  }, [useExistingData, initialData, setValues, imageUploaded]);
 
   const handleCheckboxChange = () => {
     setUseExistingData(!useExistingData);
@@ -78,6 +87,44 @@ const InnerForm = ({ values, handleChange, handleSubmit, setValues, initialData 
     handleChange(e);
     validateForm({ ...values, [e.target.name]: e.target.value });
   };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setIsUploading(true);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET);
+
+      try {
+        const response = await fetch(process.env.NEXT_PUBLIC_CLOUDINARY_API, {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error('Error uploading file to Cloudinary');
+        }
+
+        const data = await response.json();
+        const imageUrl = data.secure_url;
+        setValues(prevValues => ({ ...prevValues, image: imageUrl }));
+        setImageUploaded(true);
+        validateForm({ ...values, image: imageUrl });
+
+        // Set truncated file name
+        setFileName(truncateFileName(file.name));
+      } catch (error) {
+        console.error('Error uploading file to Cloudinary:', error);
+      } finally {
+        setIsUploading(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    validateForm(values);
+  }, [values]);
 
   return (
     <div className="flex text-white justify-around mainForm">
@@ -99,7 +146,12 @@ const InnerForm = ({ values, handleChange, handleSubmit, setValues, initialData 
                     <span>Form</span>
                   </div>
                   <div className="upload_title">
-                    <Field className="app-form-control" placeholder="Profile Photo Hosted Link" name="image" onChange={handleFieldChange} />
+                    <div className="file-upload-wrapper">
+                      <label htmlFor="file-upload" className="custom-file-upload">
+                        {isUploading ? 'Uploading...' : fileName}
+                      </label>
+                      <input id="file-upload" type="file" className="app-form-control file-input" onChange={handleFileChange} disabled={isUploading} />
+                    </div>
                     <Field className="app-form-control" placeholder="Github Profile" name="github" onChange={handleFieldChange} />
                     <Field className="app-form-control" placeholder="Linkedin Profile" name="linkedin" onChange={handleFieldChange} />
                   </div>
@@ -107,7 +159,7 @@ const InnerForm = ({ values, handleChange, handleSubmit, setValues, initialData 
                 <div className="screen-body-item">
                   <div className="app-form">
                     <label className='autofill-label'>
-                      <Field type="checkbox" className="autofill-checkbox" checked={useExistingData} onChange={handleCheckboxChange} />
+                      <Field type="checkbox" className="autofill-checkbox" name="useExistingData" checked={useExistingData} onChange={handleCheckboxChange} />
                       Auto-fill with Existing Data
                     </label>
                     <Field className="app-form-control readonly-field" placeholder="NAME" name="name" readOnly />
