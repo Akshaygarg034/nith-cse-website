@@ -15,7 +15,7 @@ function StudentGrid() {
                                     <p>Connect with a strong network of successful alumni who share their experiences and provide valuable insights into career paths and opportunities.</p>
                                 </Fade>
                             </div>
-                            <div className={styles.inner4} style={{ background: "url(https://media.licdn.com/dms/image/v2/D5622AQHgafCIbUbEbQ/feedshare-shrink_1280/feedshare-shrink_1280/0/1719053960039?e=1731542400&v=beta&t=KGC4Lo0lo6pymc82_7_ksya7JpHFGbZCKVk5-nrH8fw)" }}></div>
+                            <div className={styles.inner4} style={{ background: "url(https://res.cloudinary.com/dz1vsgxm5/image/upload/nith-cse-website/dcwkzzoayids3dytek3r)" }}></div>
                         </div>
                         <div className={styles.box4}>
                             <div className={styles.inner5} style={{ background: "url(https://res.cloudinary.com/dz1vsgxm5/image/upload/nith-cse-website/gxyimovoo9qkxdb1znpc.jpg)" }}></div>
@@ -26,7 +26,7 @@ function StudentGrid() {
                                 </Fade>
                             </div>
                         </div>
-                        <div className={styles.box5} style={{ background: "url(https://media.licdn.com/dms/image/v2/D5622AQHICPkHO25OUA/feedshare-shrink_1280/feedshare-shrink_1280/0/1727623085852?e=1731542400&v=beta&t=XIarUG5U3ib5tHLM-LrES-R1TQCpgpAPrHqQWaNkR4I)" }}>
+                        <div className={styles.box5} style={{ background: "url(https://res.cloudinary.com/dz1vsgxm5/image/upload/nith-cse-website/fdcwvgrmqbi7c3caphzk)" }}>
                             <div className={styles.overlay} style={{ bottom: '1.8%', backgroundColor: 'rgba(0, 0, 0, 0.4)' }}></div>
                             <Fade bottom>
                                 <h1>Internship and Placement Support</h1>
