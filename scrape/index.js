@@ -22,14 +22,13 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-// Schedule Scraping Upcoming Events task to run daily at 12:00 AM IST
-cron.schedule('0 0 * * *', () => {
+const runScrapeUpcomingEvents = () => {
   console.log('Running scrapeUpcomingEvents...');
-  scrapeUpcomingEvents();
-}, {
-  scheduled: true,
-  timezone: "Asia/Kolkata"
-});
+  scrapeUpcomingEvents()
+    .then(() => console.log('scrapeUpcomingEvents completed successfully'))
+    .catch(err => console.error('Error running scrapeUpcomingEvents:', err));
+};
+setInterval(runScrapeUpcomingEvents, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
 
 // Schedule Scraping Faculties task to run on the 1st of August at 12:00 AM IST
 cron.schedule('0 0 1 8 *', () => {
