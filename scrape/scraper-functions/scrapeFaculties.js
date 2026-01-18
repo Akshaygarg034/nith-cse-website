@@ -76,15 +76,14 @@ const scrapeFaculties = async () => {
       if (entry.findMore) {
         try {
           entry.img = await extractImageUrl(entry.findMore);
-        } catch (error) {
           // In website the image url is incorrect for this entry
-          if (entry.name === 'Dr. Pardeep Singh') {
+          if (entry.name === 'Dr. Pardeep Singh'){
             entry.img = 'https://portfolios.nith.ac.in/uploads/member_details/65.jpg';
             console.log(`Corrected image URL for ${entry.name} !!!`);
-          } else {
+          }
+        } catch (error) {
             console.error(`Error processing entry for ${entry.name}:`, error);
           }
-        }
       }
     }));
 
