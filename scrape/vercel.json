@@ -1,15 +1,16 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "index.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/index.js"
-      }
-    ]
-  }
+  "crons": [
+    {
+      "path": "/api/scrape-upcoming-events",
+      "schedule": "0 18 * * *"
+    },
+    {
+      "path": "/api/scrape-faculties",
+      "schedule": "0 18 31 7 *"
+    },
+    {
+      "path": "/api/scrape-students",
+      "schedule": "0 18 31 8 *"
+    }
+  ]
+}
