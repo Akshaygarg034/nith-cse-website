@@ -5,8 +5,8 @@
       "schedule": "0 18 * * *"
     },
     {
-      "path": "/api/scrape-students",
-      "schedule": "0 18 31 8 *"
+      "path": "/api/scrape-student-faculties",
+      "schedule": "0 18 31 7 *"
     }
   ]
 }
